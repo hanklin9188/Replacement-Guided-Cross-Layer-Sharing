@@ -1,0 +1,22 @@
+method,compression_pct,precision,macro_accuracy,checkpoint_gib,source
+Dense teacher,0,BF16,0.868500,14.960000,user_reported
+Dense teacher,0,INT8,0.869200,8.460000,user_reported
+Dense teacher,0,INT4,0.693300,5.410000,user_reported
+FAD (Ours),15,BF16,0.864800,12.670000,user_reported_15pct
+FAD (Ours),15,INT8,0.865200,7.320000,user_reported_15pct
+FAD (Ours),15,INT4,0.839100,4.720000,user_reported_15pct
+Basis Sharing,15,BF16,0.771615,12.714103,formal_15pct_export
+Basis Sharing,15,INT8,0.772831,7.339127,formal_15pct_export
+Basis Sharing,15,INT4,0.366489,4.791077,formal_15pct_export
+SVD-LLM,15,BF16,0.765499,12.714116,formal_15pct_export
+SVD-LLM,15,INT8,0.765538,7.339349,formal_15pct_export
+SVD-LLM,15,INT4,0.646174,4.772380,formal_15pct_export
+FAD (Ours),25,BF16,0.862800,11.040000,user_reported_25pct
+FAD (Ours),25,INT8,0.863400,6.500000,user_reported_25pct
+FAD (Ours),25,INT4,0.787600,4.390000,user_reported_25pct
+Basis Sharing,25,BF16,0.705600,11.218345,formal_25pct_export
+Basis Sharing,25,INT8,0.705800,6.591168,formal_25pct_export
+Basis Sharing,25,INT4,0.359297,4.363619,formal_25pct_export
+SVD-LLM,25,BF16,0.704607,11.218362,formal_25pct_export
+SVD-LLM,25,INT8,0.701196,6.591368,formal_25pct_export
+SVD-LLM,25,INT4,0.576959,4.374444,formal_25pct_export

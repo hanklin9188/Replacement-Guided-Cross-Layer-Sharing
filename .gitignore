@@ -10,6 +10,8 @@ cache/
 outputs/*
 !outputs/.gitkeep
 runs/
+artifacts/
+third_party/
 logs/*
 !logs/.gitkeep
 
@@ -25,6 +27,8 @@ logs/*
 data/external/*/incoming/*
 !data/external/*/incoming/README.md
 configs/paper_models.tsv
+configs/controlled_baselines.yaml
+configs/method_recovery_4h200.yaml
 
 paper/*.aux
 paper/*.bbl

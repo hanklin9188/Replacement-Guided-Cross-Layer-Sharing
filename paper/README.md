@@ -30,9 +30,12 @@ For an anonymous build:
 pdflatex -jobname=main_anonymous '\def\ANONYMOUS{1}\input{main.tex}'
 ```
 
-The cross-method quantization figure is created only after both external
-baseline manifests pass validation. Without it, the manuscript compiles with
-an explicit pending box.
+The cross-method quantization figure and its compact observed source table are
+included. Regenerate it from the repository root with:
+
+```bash
+python scripts/generate_quantization_figure.py
+```
 
 The bundled `spconf.sty` and `IEEEbib.bst` come from the 2026 IEEE SPS ICIP
 author kit as a provisional compile dependency. Compare them with the official

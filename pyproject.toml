@@ -26,6 +26,7 @@ dependencies = [
 
 [project.scripts]
 rgcls = "icassp27.cli:main"
+rgcls-baselines = "icassp27.controlled_baselines.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

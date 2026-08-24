@@ -54,9 +54,9 @@ The exact rows are in `data/ours/pair_analysis.csv`,
 | 8B--25% | W8A16 | 86.34% | 6.50 GiB | 56.53% |
 | 8B--25% | W4A16 | 78.76% | 4.39 GiB | 70.63% |
 
-These are Ours observations. The manuscript-facing cross-method quantization
-plot is withheld until the external Basis Sharing and SVD-LLM quantization
-manifests pass the common validator.
+The full cross-method points, per-task baseline accuracy, paired intervals, and
+exact packed-byte manifests are in `data/processed/quantization/`; the complete
+numeric report is in `docs/QUANTIZATION.md`.
 
 ## Provenance split
 

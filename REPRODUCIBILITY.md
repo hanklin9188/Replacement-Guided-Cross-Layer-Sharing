@@ -32,11 +32,13 @@ teachers, atlases, and step-0 policies under their respective terms. Fill
 `configs/paper_models.tsv` from the provided example and submit the smoke/full
 dependency chain in `docs/REPRODUCTION.md`.
 
-## External baseline boundary
+## Controlled baseline path
 
-Basis Sharing and SVD-LLM are produced on another server. Their reserved code,
-config, Slurm, and result destinations are complete, but formal integration is
-pending until all four payload files per method pass the scheduled validator.
+The public tree includes the exact controlled Basis Sharing and SVD-LLM ports,
+paper-matched recovery code, portable config templates, 4xH200 launchers,
+quantization/evaluation scripts, and compact formal outputs. Re-running model
+work still requires separately licensed weights, teachers, splits, and
+checkpoints.
 
 ## Included
 
@@ -44,7 +46,8 @@ pending until all four payload files per method pass the scheduled validator.
 - explicit NCHC Slurm entry points and resource requests;
 - model revisions, prototype budgets, and paper recovery settings;
 - compact Ours data and structural observations;
-- frozen all-method paper table and processed paired statistics;
+- frozen all-method paper table, processed paired statistics, and complete
+  cross-method quantization summaries;
 - paper source, bibliography, figures, and executable integrity checks.
 
 ## Not redistributed
@@ -53,7 +56,7 @@ pending until all four payload files per method pass the scheduled validator.
 - full benchmark corpora and private recovery splits;
 - complete per-example prediction payloads;
 - private cluster paths, credentials, caches, or scheduler logs;
-- external baseline source snapshots not yet transferred from the other server.
+- multi-GiB packed quantized checkpoints and raw scheduler work directories.
 
 ## Evidence rule
 

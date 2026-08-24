@@ -1,0 +1,118 @@
+schema_version: 1
+experiment_name: basis_svd_controlled_recovery_20260821
+
+paths:
+  code_root: .
+  output_root: outputs/controlled_baselines
+  hf_home: .cache/huggingface
+  raw_checkpoint_root: outputs/controlled_baselines/raw_checkpoints
+  result_root: outputs/controlled_baselines/results
+  slurm_log_root: outputs/controlled_baselines/slurm
+
+matrix:
+  methods: [basis_sharing, svd_llm]
+  backbones: [llama32_3b, llama31_8b]
+  target_reductions: [0.15, 0.20, 0.25]
+  objectives: [ce, ce_kd]
+  seeds: [42, 43, 44]
+
+methods:
+  basis_sharing:
+    repository: https://github.com/TUDa-HWAI/Basis_Sharing.git
+    source_path: third_party/Basis_Sharing
+    commit: 1c021b6ce1d3932750b8cb9f7f0e08fa9acdf2c2
+    port_note: generic Llama projection wrapper preserving native cross-layer activation-whitened joint SVD
+  svd_llm:
+    repository: https://github.com/AIoT-MLSys-Lab/SVD-LLM.git
+    source_path: third_party/SVD-LLM
+    commit: 7538cca98880ff312a79a16252aab5a7b480fbe9
+    port_note: generic Llama projection wrapper preserving native activation-whitened truncated SVD
+
+backbones:
+  llama32_3b:
+    model_id: meta-llama/Llama-3.2-3B
+    model_path: artifacts/models/llama32_3b
+    revision: 13afe5124825b4f3751f836b40dafda64c1ed062
+    tokenizer_revision: 13afe5124825b4f3751f836b40dafda64c1ed062
+    teacher_path: artifacts/teachers/llama32_3b
+    recovery_train: artifacts/data/llama32_3b/recovery_train.json
+    recovery_validation: artifacts/data/llama32_3b/recovery_validation.json
+    evaluation_data_root: artifacts/data/llama32_3b/evaluation
+    calibration_blocks: artifacts/data/llama32_3b/calibration_blocks.pt
+    max_steps: 7500
+    per_gpu_batch: 8
+    gradient_accumulation: 2
+    learning_rate: 8.0e-5
+    warmup_steps: 750
+    eval_batch: 8
+  llama31_8b:
+    model_id: meta-llama/Llama-3.1-8B
+    model_path: artifacts/models/llama31_8b
+    revision: d04e592bb4f6aa9cfee91e2e20afa771667e1d4b
+    tokenizer_revision: d04e592bb4f6aa9cfee91e2e20afa771667e1d4b
+    teacher_path: artifacts/teachers/llama31_8b
+    recovery_train: artifacts/data/llama31_8b/recovery_train.json
+    recovery_validation: artifacts/data/llama31_8b/recovery_validation.json
+    evaluation_data_root: artifacts/data/llama31_8b/evaluation
+    calibration_blocks: artifacts/data/llama31_8b/calibration_blocks.pt
+    max_steps: 10000
+    per_gpu_batch: 2
+    gradient_accumulation: 2
+    learning_rate: 6.0e-5
+    warmup_steps: 1000
+    eval_batch: 4
+
+compression:
+  calibration_seed: 2027
+  calibration_sequences: 64
+  calibration_length: 512
+  covariance_tokens_per_sequence: 256
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+  basis_group_size: 2
+  basis_shared_modules: [q_proj, k_proj, v_proj, gate_proj, up_proj]
+  basis_private_modules: [o_proj, down_proj]
+  svd_epsilon: 1.0e-6
+  decomposition: exact
+
+recovery:
+  rank: 128
+  alpha: 128
+  dropout: 0.0
+  bias: none
+  target_modules: [q_proj, v_proj]
+  max_length: 384
+  weight_decay: 0.01
+  optimizer: adamw
+  scheduler: warmup_cosine
+  minimum_lr_ratio: 0.01
+  gradient_checkpointing: true
+  gradient_clip_norm: 1.0
+  validation_interval: 500
+  validation_maximum: 2048
+  selection_metric: decision_ce
+  minimum_improvement: 1.0e-6
+  lambda_ce: 1.0
+  lambda_kd: 1.0
+  temperature: 2.0
+  loss_scope: decision
+  loss_exclude_eos: true
+
+evaluation:
+  tasks: [arc_challenge, arc_easy, hellaswag, openbookqa, piqa, social_i_qa, winogrande]
+  shots: 0
+  mode: logprob
+  length_norm: none
+  quantization: false
+  dtype: float16
+  split: final
+
+slurm:
+  partition: 8gpus
+  account: mst114566
+  gpu_type: H200
+  gpus_per_job: 1
+  cpus_per_task: 12
+  memory: 200G
+  time_limit: 2-00:00:00
+  submission_retries: 20
+  retry_seconds: 15

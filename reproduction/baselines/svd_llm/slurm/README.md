@@ -1,1 +1,1 @@
-Place smoke, full, serialization, and quantization Slurm launchers here.
+Shared portable launchers are under `reproduction/baselines/slurm/`.

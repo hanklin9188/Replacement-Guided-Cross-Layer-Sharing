@@ -18,8 +18,8 @@ donor-to-target 方向挑代表 FFN。
 
 這份倉庫以「可稽核研究產物」的方式整理：Ours 的程式、Slurm 工作、
 精簡觀測資料、圖片、論文原始檔與驗證器都已納入；Basis Sharing 與
-SVD-LLM 因為在另一台 server 執行，已預留完整的 source、config、Slurm、
-prediction、byte manifest、quantization manifest 與 provenance 位置。
+SVD-LLM 的受控 compression、recovery、evaluation、量化程式、設定範本、
+Slurm 工作與正式精簡結果也已整理完成。
 
 ## 主要結果
 
@@ -42,12 +42,12 @@ Ours 的 8B--25% W8A16 checkpoint 為 6.50 GiB、86.34% macro accuracy；
 | Ours 方法、訓練、評估與分析程式 | **已整理** |
 | Ours Pure / CE / CE+KD 資料 | **已整理並由驗證器檢查** |
 | 結構分析、joint distortion、ablation | **已整理並由驗證器檢查** |
-| Basis Sharing 完整重現檔 | **等待另一台 server 匯入** |
-| SVD-LLM 完整重現檔 | **等待另一台 server 匯入** |
-| 三方法正式量化圖 | **等待外部 manifest 後自動產生** |
+| Basis Sharing / SVD-LLM 受控重現程式 | **已整理** |
+| Baseline 設定、Slurm 與量化 pipeline | **已整理** |
+| 三方法正式量化資料與圖 | **已整理並由驗證器檢查** |
 
-論文在外部量化資料尚未齊全時仍可編譯，但會明確顯示 pending，不會產生
-無法追溯的假圖。
+論文所用量化圖、21 個 source points、per-task accuracy、paired bootstrap
+與 packed-byte manifest 都已放入 repo，可由腳本重畫。
 
 ## 驗證
 
@@ -67,11 +67,12 @@ sbatch slurm/verify_repository.sbatch
 `delta <= Delta`、paired-example 對齊、論文引用、README 連結，以及公開
 檔案是否殘留私人路徑或憑證。
 
-## 外部 server 補檔
+## 大型外部產物
 
-每個 baseline 需要四個正式 payload：`predictions.csv`、
-`byte_manifest.csv`、`quantization.csv`、`run_manifest.json`。格式與精確
-目錄請看 [data/external/README.md](data/external/README.md)。全部放好後：
+若要重新匯入未精簡的逐題 prediction 或大型 checkpoint，可依
+[data/external/README.md](data/external/README.md) 的 schema 放入四個 payload：
+`predictions.csv`、`byte_manifest.csv`、`quantization.csv`、
+`run_manifest.json`，再執行：
 
 ```bash
 sbatch slurm/import_external_baselines.sbatch

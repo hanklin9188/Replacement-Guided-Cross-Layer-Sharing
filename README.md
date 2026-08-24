@@ -6,7 +6,7 @@
 [![Verify repository](https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing/actions/workflows/verify.yml/badge.svg)](https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing/actions/workflows/verify.yml)
 [![Paper](https://img.shields.io/badge/paper-ICASSP%202027-8A2BE2)](paper/main.pdf)
 [![Artifact](https://img.shields.io/badge/artifact-auditable-2f6f62)](REPRODUCIBILITY.md)
-[![External baselines](https://img.shields.io/badge/Basis%20Sharing%20%2F%20SVD--LLM-import%20slots-f0ad4e)](data/external/README.md)
+[![Baselines](https://img.shields.io/badge/Basis%20Sharing%20%2F%20SVD--LLM-reproducible-2f6f62)](docs/BASELINES.md)
 
 [繁體中文](README_zh-TW.md) · [Paper PDF](paper/main.pdf) · [Paper source](paper/README.md) · [Method](docs/METHOD.md) · [Results](docs/RESULTS.md) · [Reproduce](docs/REPRODUCTION.md) · [Baseline import](docs/BASELINES.md)
 
@@ -40,7 +40,7 @@ different server.
 - **Separated recovery:** Pure, CE, and CE+KD expose structure quality,
   label-only recoverability, and teacher-assisted stability separately.
 - **Deployment accounting:** unique parameters, standalone serialized bytes,
-  and BF16/W8A16/W4A16 behavior are reported without claiming inherent FLOP
+  and BF16/INT8/INT4 behavior are reported without claiming inherent FLOP
   savings from sharing.
 
 ## Evidence snapshot
@@ -58,7 +58,7 @@ report mean ± sample SD over seeds 42/43/44.
 | Llama-3.1-8B | 20% | **85.94 ± 0.34** | 73.89 | +12.05 pp |
 | Llama-3.1-8B | 25% | **85.92 ± 0.36** | 69.96 | +15.96 pp |
 
-At the selected 8B checkpoints, Ours W8A16 preserves the BF16 result while
+At the selected 8B checkpoints, Ours INT8 preserves the BF16 result while
 cutting standalone storage substantially:
 
 | Structure | Precision | Macro accuracy | Serialized size |
@@ -68,9 +68,11 @@ cutting standalone storage substantially:
 | 25% | BF16 | 86.28% | 11.04 GiB |
 | 25% | INT8 | **86.34%** | **6.50 GiB** |
 
-The cross-method quantization figure is intentionally generated only after the
-external Basis Sharing and SVD-LLM manifests pass validation. Until then the
-paper compiles with an explicit placeholder instead of an untraceable plot.
+The complete 15%/25% cross-method storage--accuracy figure, its 21 source
+points, per-task baseline aggregates, paired bootstrap intervals, exact byte
+manifests, and regeneration script are included.
+
+<img src="assets/figures/quantization.png" alt="Cross-method quantized storage-accuracy trade-off" width="78%">
 
 ## Artifact status
 
@@ -80,9 +82,9 @@ paper compiles with an explicit placeholder instead of an untraceable plot.
 | Ours Pure / CE / CE+KD compact results | **Included and verifier-checked** |
 | Directed, group, joint, and ablation analyses | **Included and verifier-checked** |
 | Processed paired baseline comparisons and byte accounting | **Included** |
-| Basis Sharing full source/config/checkpoints | **Reserved for external import** |
-| SVD-LLM full source/config/checkpoints | **Reserved for external import** |
-| Cross-method quantization source manifests | **Pending external import** |
+| Controlled Basis Sharing / SVD-LLM compression and recovery code | **Included** |
+| Baseline configs, Slurm jobs, and quantization pipeline | **Included** |
+| Cross-method quantization source tables and figure | **Included and verifier-checked** |
 | Model weights and full datasets | **Intentionally excluded** |
 
 ## Verify without a GPU
@@ -126,8 +128,8 @@ sbatch reproduction/ours/slurm/paper_recovery_smoke.sbatch
 ```
 
 See [docs/REPRODUCTION.md](docs/REPRODUCTION.md) for the complete staged
-workflow and [docs/BASELINES.md](docs/BASELINES.md) for the external-server
-handoff.
+workflow and [docs/BASELINES.md](docs/BASELINES.md) for the controlled baseline
+compression, recovery, and quantization paths.
 
 ## Repository map
 
@@ -135,10 +137,10 @@ handoff.
 paper/                       manuscript, bibliography, template, paper figures
 src/icassp27/                modular reference implementation
 reproduction/ours/           paper-era core snapshot, scripts, and Slurm jobs
-reproduction/baselines/      complete Basis Sharing / SVD-LLM integration slots
+reproduction/baselines/      controlled baseline runners, analysis, and Slurm jobs
 data/ours/                   compact Ours observations and measurements
 data/processed/              paper table, paired statistics, and byte accounting
-data/external/               schemas and incoming external-server payload slots
+data/external/               optional raw-payload import schemas
 assets/figures/              README previews and publication figures
 scripts/                     verification, plotting, and import utilities
 docs/                        method, results, audit, reproduction, and file guide
@@ -161,9 +163,9 @@ compact observed tables, figure inputs, processed paired statistics, paper
 sources, and executable integrity checks.
 
 Not redistributed: Meta Llama weights, recovered checkpoints, full benchmark
-corpora, private cluster paths, credentials, and raw scheduler logs. External
-baseline source snapshots and quantization manifests remain explicitly pending
-until copied from the other server and accepted by the import validator.
+corpora, private cluster paths, credentials, raw scheduler logs, and multi-GiB
+packed checkpoints. Upstream baseline revisions are pinned; their source may be
+cloned under `third_party/` when provenance preflight is required.
 
 ## Citation and terms
 

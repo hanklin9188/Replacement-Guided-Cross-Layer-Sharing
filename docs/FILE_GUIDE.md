@@ -12,7 +12,8 @@
 | `reproduction/ours/core/` | Paper-era functional observation, grouping, recovery, evaluation, and quantization snapshot. |
 | `reproduction/ours/scripts/` | Policy preparation and exact CE/CE+KD recovery launchers. |
 | `reproduction/ours/slurm/` | Resource-explicit reference and paper-scale jobs. |
-| `reproduction/baselines/` | Complete reserved integration tree for Basis Sharing and SVD-LLM. |
+| `src/icassp27/controlled_baselines/` | Executable controlled Basis Sharing / SVD-LLM compression, recovery, and evaluation. |
+| `reproduction/baselines/` | Baseline orchestration, quantization, upstream revisions, and Slurm jobs. |
 | `data/ours/per_task.csv` | 294 compact task rows underlying 42 current Ours run macros. |
 | `data/ours/main_summary.csv` | Current Ours Pure/CE/CE+KD mean and sample SD. |
 | `data/ours/directed_costs.csv` | 1,748 finite off-diagonal directed replacement observations. |
@@ -21,6 +22,7 @@
 | `data/ours/joint_analysis.csv` | Six simultaneous-deployment distortion rows. |
 | `data/ours/structural_ablation.csv` | Five 3B--20% structure variants and equivalence labels. |
 | `data/ours/quantization.csv` | Ours 8B--15/25% BF16/W8A16/W4A16 results. |
+| `data/processed/quantization/` | Complete cross-method plot points, per-task accuracy, paired intervals, and byte manifests. |
 | `data/processed/paper_main_table.csv` | Frozen manuscript aggregate for all methods. |
 | `data/processed/paired_bootstrap_results.csv` | Synchronized paired comparisons with confidence intervals. |
 | `data/processed/paired_bootstrap_task_coverage.csv` | Exact question-alignment audit. |
@@ -29,5 +31,5 @@
 | `scripts/verify_repository.py` | Standard-library numeric, citation, link, and hygiene authority. |
 | `scripts/import_external_baselines.py` | Scheduled external payload validator and hasher. |
 | `scripts/generate_paper_figures.py` | Rebuilds data-driven non-quantization figures. |
-| `scripts/generate_quantization_figure.py` | Refuses output until all three methods are complete. |
+| `scripts/generate_quantization_figure.py` | Rebuilds the released cross-method quantization figure from compact observed rows. |
 | `.github/workflows/verify.yml` | Runs the public integrity audit on every push and pull request. |

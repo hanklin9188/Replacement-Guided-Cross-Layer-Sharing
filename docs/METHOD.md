@@ -58,7 +58,7 @@ identity, which is enforced by `scripts/verify_repository.py`.
 
 ## Shared model and recovery
 
-Each logical layer uses the selected shared FFN plus a layer-private rank-128
+Each logical layer uses the selected shared FFN plus a layer-private rank-64
 parallel low-rank residual adapter. The sharing groups and representatives are
 frozen before recovery. Attention remains frozen; the shared FFN bank and
 parallel adapters are trainable in the released paper recipe.

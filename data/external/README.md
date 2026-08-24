@@ -1,10 +1,9 @@
 # External baseline import boundary
 
-This machine contains the Ours implementation and compact processed comparison
-artifacts. The complete Basis Sharing and SVD-LLM implementations, checkpoints,
-per-example predictions, byte manifests, and quantization manifests are produced
-on another server. This tree reserves every destination and defines one strict
-contract so those assets can be added without changing the paper-facing code.
+The public repository already contains the controlled baseline implementation,
+compact comparison artifacts, and complete quantization summaries. This tree
+defines an optional strict contract for importing full per-example payloads or
+reruns from another machine without changing paper-facing code.
 
 For each method, place these files in its `incoming/` directory:
 
@@ -22,5 +21,5 @@ sbatch slurm/import_external_baselines.sbatch
 ```
 
 The job validates schemas and exact coverage before it writes processed tables.
-The quantization figure generator refuses to create the manuscript-facing file
-until both methods have complete inputs.
+Imported payloads are validated independently and do not overwrite the frozen
+paper tables unless explicitly promoted after audit.

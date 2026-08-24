@@ -218,8 +218,8 @@ for idx in "${!PROTOS[@]}"; do
         --shuffle_records False \
         --seed 44 \
         --device cuda \
-        --private_down_rank 128 \
-        --private_down_alpha 128 \
+        --private_down_rank 64 \
+        --private_down_alpha 64 \
         --proto_seed_strategy "${strategy}" \
         --steps 0 \
         --distill_mode ce \

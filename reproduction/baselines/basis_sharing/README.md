@@ -1,17 +1,10 @@
-# Basis Sharing integration slot
+# Basis Sharing reproduction record
 
 Upstream: <https://github.com/TUDa-HWAI/Basis_Sharing>
 
-Required additions from the external server:
-
-1. Pin the exact upstream commit in `vendor/REVISION` and place the source or
-   submodule under `vendor/`.
-2. Add matched 3B/8B configurations for 15/20/25% under `configs/`.
-3. Add adapters under `code/` for compression, CE recovery, CE+KD recovery,
-   seven-task evaluation, standalone serialization, and TorchAO quantization.
-4. Add dependency-gated `smoke.sbatch`, `full.sbatch`, `serialize.sbatch`, and
-   `quantize.sbatch` under `slurm/`.
-5. Emit the four files required by `data/external/README.md`.
-
-The common evaluator contract is log-probability multiple-choice scoring with
-`length_norm=none`, tasks fixed by the paper, and seeds 42/43/44.
+The controlled Llama-3 port is implemented by
+`src/icassp27/controlled_baselines/`. It preserves the cross-layer shared-basis
+factorization while using the common paper recovery/evaluation contract. The
+exact upstream revision is in `vendor/REVISION`; portable configs and Slurm
+entry points are at the repository-level baseline paths documented in
+`../README.md`.

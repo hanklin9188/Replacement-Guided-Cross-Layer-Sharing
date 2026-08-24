@@ -67,7 +67,9 @@ def verify_required_files(audit: Audit) -> None:
         "paper/references.bib",
         "paper/Figure/replace.pdf",
         "paper/Figure/diag_structural_validation.pdf",
+        "paper/Figure/fig_quantization_15_25_storage_accuracy.png",
         "assets/figures/framework.png",
+        "assets/figures/quantization.png",
         "scripts/verify_repository.py",
         "scripts/import_external_baselines.py",
         "scripts/generate_quantization_figure.py",
@@ -83,6 +85,19 @@ def verify_required_files(audit: Audit) -> None:
         "data/processed/paired_bootstrap_results.csv",
         "data/processed/paired_bootstrap_task_coverage.csv",
         "data/processed/serialized_byte_reduction_combined.csv",
+        "data/processed/quantization/storage_accuracy.csv",
+        "data/processed/quantization/baseline_15_accuracy.csv",
+        "data/processed/quantization/baseline_15_paired_bootstrap.csv",
+        "data/processed/quantization/baseline_15_bytes.csv",
+        "data/processed/quantization/baseline_25_accuracy.csv",
+        "data/processed/quantization/baseline_25_paired_bootstrap.csv",
+        "data/processed/quantization/baseline_25_bytes.csv",
+        "src/icassp27/controlled_baselines/compress.py",
+        "src/icassp27/controlled_baselines/method_recovery.py",
+        "configs/controlled_baselines.example.yaml",
+        "configs/method_recovery_4h200.example.yaml",
+        "reproduction/baselines/quantization/quantized_eval.py",
+        "reproduction/baselines/slurm/quantize_4xh200.sbatch",
     ]
     for relative in required:
         path = ROOT / relative
@@ -174,6 +189,65 @@ def verify_paper_and_external_tables(audit: Audit) -> None:
     audit.check({(row["model_id"], row["precision"]) for row in quant} == expected_quant, "Ours quantization coverage mismatch")
 
 
+def verify_quantization_release(audit: Audit) -> None:
+    plot = rows("data/processed/quantization/storage_accuracy.csv")
+    audit.check(len(plot) == 21, "quantization plot table must contain 21 rows")
+    expected_plot = {
+        (method, target, precision)
+        for method in ("FAD (Ours)", "Basis Sharing", "SVD-LLM")
+        for target in (15, 25)
+        for precision in ("BF16", "INT8", "INT4")
+    }
+    observed_plot = {
+        (row["method"], int(row["compression_pct"]), row["precision"])
+        for row in plot if row["method"] != "Dense teacher"
+    }
+    audit.check(observed_plot == expected_plot, "cross-method quantization plot coverage mismatch")
+    audit.check(
+        {(row["compression_pct"], row["precision"]) for row in plot if row["method"] == "Dense teacher"}
+        == {("0", precision) for precision in ("BF16", "INT8", "INT4")},
+        "dense quantization reference coverage mismatch",
+    )
+
+    for target in (15, 25):
+        accuracy = rows(f"data/processed/quantization/baseline_{target}_accuracy.csv")
+        bootstrap = rows(f"data/processed/quantization/baseline_{target}_paired_bootstrap.csv")
+        byte_rows = rows(f"data/processed/quantization/baseline_{target}_bytes.csv")
+        audit.check(len(accuracy) == 48, f"{target}% quantization accuracy must contain 48 rows")
+        audit.check(len(bootstrap) == 32, f"{target}% quantization bootstrap must contain 32 rows")
+        audit.check(len(byte_rows) == 6, f"{target}% quantization byte manifest must contain six rows")
+        for method in ("Basis Sharing", "SVD-LLM"):
+            for precision in ("BF16", "W8A16", "W4A16"):
+                selected = [row for row in accuracy if row["method"] == method and row["precision"] == precision]
+                task_values = [float(row["accuracy"]) for row in selected if row["scope"] != "Macro"]
+                macro = [float(row["accuracy"]) for row in selected if row["scope"] == "Macro"]
+                audit.check(len(task_values) == 7 and len(macro) == 1,
+                            f"{target}% task coverage mismatch: {method}/{precision}")
+                if macro:
+                    audit.check(close(macro[0], statistics.mean(task_values)),
+                                f"{target}% macro mismatch: {method}/{precision}")
+        for row in bootstrap:
+            audit.check(int(row["n_bootstrap"]) == 10000, "quantization bootstrap count mismatch")
+            audit.check(close(row["difference_pp"], 100 * float(row["difference"])),
+                        "quantization difference percentage-point mismatch")
+        for row in byte_rows:
+            artifact = int(row["artifact_bytes"])
+            compressed = int(row["compressed_bf16_standalone_bytes"])
+            dense = int(row["dense_8b_teacher_bytes"])
+            audit.check(close(row["reduction_vs_compressed_bf16_pct"], 100 * (1 - artifact / compressed)),
+                        "quantization compressed-byte reduction mismatch")
+            audit.check(close(row["reduction_vs_dense_8b_teacher_pct"], 100 * (1 - artifact / dense)),
+                        "quantization dense-byte reduction mismatch")
+
+    tex = (ROOT / "paper/main.tex").read_text(encoding="utf-8")
+    config = (ROOT / "configs/experiment.yaml").read_text(encoding="utf-8")
+    recovery = (ROOT / "reproduction/ours/scripts/run_paper_recovery.sh").read_text(encoding="utf-8")
+    audit.check("rho=64" in tex and "adapter_rank: 64" in config and "PRIVATE_DOWN_RANK=${PRIVATE_DOWN_RANK:-64}" in recovery,
+                "rank-64 adapter contract is not synchronized")
+    audit.check("fig_quantization_15_25_storage_accuracy.png" in tex and "pending import" not in tex.lower(),
+                "paper quantization figure is missing or still marked pending")
+
+
 def verify_citations_and_links(audit: Audit) -> None:
     tex = (ROOT / "paper/main.tex").read_text(encoding="utf-8")
     bib = (ROOT / "paper/references.bib").read_text(encoding="utf-8")
@@ -214,6 +288,7 @@ def main() -> None:
         verify_ours_statistics(audit)
         verify_structural_data(audit)
         verify_paper_and_external_tables(audit)
+        verify_quantization_release(audit)
         verify_citations_and_links(audit)
         verify_public_hygiene(audit)
     report = {

@@ -62,8 +62,8 @@ replacement:
   row_array_concurrency: 4
 
 student:
-  adapter_rank: 128
-  adapter_alpha: 128
+  adapter_rank: 64
+  adapter_alpha: 64
   adapter_output_zero_init: true
   train_shared_ffn: true
   freeze_attention: true
@@ -89,8 +89,8 @@ recovery:
   batch_size: 1
   gradient_accumulation: 2
   max_length: 384
-  projection_ranks: [64, 128, 256]
-  main_projection_rank: 128
+  projection_ranks: [32, 64, 128]
+  main_projection_rank: 64
   lambda_grid: [0.03, 0.1, 0.3, 1.0, 3.0]
   main_lambda_align: 0.3
   epsilon: 1.0e-5

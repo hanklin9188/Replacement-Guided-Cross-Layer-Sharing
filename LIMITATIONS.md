@@ -1,10 +1,9 @@
 # Limitations
 
-- **External baseline completeness.** Processed Basis Sharing and SVD-LLM
-  comparison artifacts are present, but their full source/config/checkpoint and
-  quantization manifests still need to be imported from another server. The
-  repository labels this status throughout and withholds the final cross-method
-  quantization figure until validation passes.
+- **External artifact boundary.** Controlled Basis Sharing and SVD-LLM code,
+  configs, launchers, and compact formal outputs are included. Separately
+  licensed model weights, teachers, benchmark corpora, recovered checkpoints,
+  and multi-GiB packed files are not redistributed.
 - **Frozen versus synchronized evaluation.** The headline table is the frozen
   paper aggregate, while paired bootstrap uses synchronized current
   per-example predictions. Maximum Ours drift is 0.341 percentage point. These
@@ -22,10 +21,10 @@
 - **Pairwise versus joint behavior.** The group envelope controls measured
   isolated replacements, but it is not a numerical upper bound on simultaneous
   deployment distortion.
-- **Quantized runtime.** The reported TorchAO results establish storage and
-  accuracy behavior under a common weight-only setup. Kernel and hardware
-  effects are configuration-dependent and should not be generalized to every
-  serving stack.
+- **Quantized runtime.** The released baseline packed-weight evaluator
+  dequantizes to BF16 for inference; its results establish storage and accuracy,
+  not integer-kernel latency or throughput. Kernel and hardware effects should
+  not be generalized to every serving stack.
 - **Backbone and task scope.** Conclusions are limited to Llama-3.2-3B,
   Llama-3.1-8B, the stated 15/20/25% operating points, and seven
   multiple-choice tasks.

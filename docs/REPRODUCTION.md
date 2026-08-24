@@ -79,8 +79,14 @@ With a Python environment containing NumPy and Matplotlib:
 sbatch --export=ALL,PYTHON_BIN=/path/to/env/bin/python slurm/generate_figures.sbatch
 ```
 
-The cross-method quantization figure has a stricter gate: both external
-`quantization.csv` files must first pass `scripts/import_external_baselines.py`.
+The cross-method quantization figure is fully self-contained:
+
+```bash
+python scripts/generate_quantization_figure.py
+```
+
+Baseline compression/recovery/quantization commands and required external
+artifact paths are documented in `docs/BASELINES.md`.
 
 ## Expected outputs
 

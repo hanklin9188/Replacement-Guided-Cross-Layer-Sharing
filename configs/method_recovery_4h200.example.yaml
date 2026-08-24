@@ -1,0 +1,96 @@
+schema_version: 1
+experiment_name: basis_fullft_svd_sequential_4h200_20260822
+
+paths:
+  code_root: .
+  raw_checkpoint_root: outputs/controlled_baselines/raw_checkpoints
+  output_root: outputs/method_recovery_4h200
+  result_root: outputs/method_recovery_4h200/results
+  pilot_root: outputs/method_recovery_4h200/pilots
+  control_root: outputs/method_recovery_4h200/controls
+  slurm_log_root: outputs/method_recovery_4h200/slurm
+
+matrix:
+  methods: [basis_sharing, svd_llm]
+  backbones: [llama32_3b, llama31_8b]
+  target_reductions: [0.15, 0.20, 0.25]
+  objectives: [ce, ce_kd]
+  seeds: [42, 43, 44]
+
+backbones:
+  llama32_3b:
+    model_id: meta-llama/Llama-3.2-3B
+    model_path: artifacts/models/llama32_3b
+    revision: 13afe5124825b4f3751f836b40dafda64c1ed062
+    teacher_path: artifacts/teachers/llama32_3b
+    recovery_train: artifacts/data/llama32_3b/recovery_train.json
+    recovery_validation: artifacts/data/llama32_3b/recovery_validation.json
+    evaluation_data_root: artifacts/data/llama32_3b/evaluation
+    max_steps: 7500
+    per_gpu_batch: 2
+    gradient_accumulation: 2
+    effective_global_batch: 16
+    warmup_steps: 750
+    eval_batch: 8
+  llama31_8b:
+    model_id: meta-llama/Llama-3.1-8B
+    model_path: artifacts/models/llama31_8b
+    revision: d04e592bb4f6aa9cfee91e2e20afa771667e1d4b
+    teacher_path: artifacts/teachers/llama31_8b
+    recovery_train: artifacts/data/llama31_8b/recovery_train.json
+    recovery_validation: artifacts/data/llama31_8b/recovery_validation.json
+    evaluation_data_root: artifacts/data/llama31_8b/evaluation
+    max_steps: 10000
+    per_gpu_batch: 1
+    gradient_accumulation: 1
+    effective_global_batch: 4
+    warmup_steps: 1000
+    eval_batch: 4
+
+recovery:
+  max_length: 384
+  weight_decay: 0.01
+  optimizer: adamw
+  scheduler: warmup_cosine
+  minimum_lr_ratio: 0.01
+  gradient_checkpointing: true
+  gradient_clip_norm: 1.0
+  validation_interval: 500
+  validation_maximum: 2048
+  selection_metric: decision_ce
+  minimum_improvement: 1.0e-6
+  lambda_ce: 1.0
+  lambda_kd: 1.0
+  temperature: 2.0
+  loss_scope: decision
+  loss_exclude_eos: true
+  svd_stage_order: [u, v]
+
+lr_tuning:
+  target_reduction: 0.20
+  seed: 42
+  pilot_steps: 500
+  validation_maximum: 256
+  grid: [1.0e-5, 3.0e-5, 6.0e-5, 1.0e-4]
+
+evaluation:
+  tasks: [arc_challenge, arc_easy, hellaswag, openbookqa, piqa, social_i_qa, winogrande]
+  shots: 0
+  mode: logprob
+  length_norm: none
+  quantization: false
+  dtype: float16
+  split: final
+
+slurm:
+  partition: 8gpus
+  account: mst114566
+  gpu_type: H200
+  gpus_per_job: 4
+  cpus_per_task: 48
+  memory: 500G
+  time_limit: 2-00:00:00
+  submission_retries: 30
+  retry_seconds: 20
+  qos_max_jobs_per_user: 20
+  maximum_run_attempts: 4
