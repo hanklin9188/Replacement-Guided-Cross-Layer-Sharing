@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this research artifact, please cite the accompanying paper."
+title: "Replacement-Guided Cross-Layer Sharing for Model Compression"
+type: software
+version: 0.1.0
+date-released: 2026-08-25
+authors:
+  - family-names: Lin
+    given-names: Yen-Han
+  - family-names: Chien
+    given-names: Jen-Tzung
+repository-code: "https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing"
+url: "https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing"
+keywords:
+  - large language model compression
+  - cross-layer sharing
+  - knowledge distillation
+  - quantization
+  - reproducible research
+preferred-citation:
+  type: conference-paper
+  title: "Replacement-Guided Cross-Layer Sharing for Model Compression"
+  authors:
+    - family-names: Lin
+      given-names: Yen-Han
+    - family-names: Chien
+      given-names: Jen-Tzung
+  collection-title: "2027 IEEE International Conference on Acoustics, Speech, and Signal Processing"
+  year: 2027

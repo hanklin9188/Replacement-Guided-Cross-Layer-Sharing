@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "External baseline run manifest",
+  "type": "object",
+  "required": [
+    "method",
+    "upstream_repository",
+    "upstream_revision",
+    "model_revisions",
+    "evaluator_revision",
+    "length_norm",
+    "seeds",
+    "commands",
+    "environment"
+  ],
+  "properties": {
+    "method": {"enum": ["Basis Sharing", "SVD-LLM"]},
+    "upstream_repository": {"type": "string"},
+    "upstream_revision": {"type": "string", "minLength": 7},
+    "model_revisions": {"type": "object"},
+    "evaluator_revision": {"type": "string"},
+    "length_norm": {"const": "none"},
+    "seeds": {"const": [42, 43, 44]},
+    "commands": {"type": "array", "items": {"type": "string"}},
+    "environment": {"type": "object"},
+    "quantization": {"type": "object"},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": true
+}

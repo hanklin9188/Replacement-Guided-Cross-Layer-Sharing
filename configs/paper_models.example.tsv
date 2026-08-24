@@ -1,0 +1,7 @@
+#id	backbone	target_pct	K	strategy	checkpoint	policy	atlas_dir	base_model	teacher	train_data	val_data
+3b_15	llama32_3b	15	22	medoid	<STEP0_CHECKPOINT>	<POLICY_JSON>	<ATLAS_DIR>	meta-llama/Llama-3.2-3B	<MERGED_TEACHER>	<TRAIN_JSON>	<VAL_JSON>
+3b_20	llama32_3b	20	19	policy_medoid	<STEP0_CHECKPOINT>	<POLICY_JSON>	<ATLAS_DIR>	meta-llama/Llama-3.2-3B	<MERGED_TEACHER>	<TRAIN_JSON>	<VAL_JSON>
+3b_25	llama32_3b	25	17	medoid	<STEP0_CHECKPOINT>	<POLICY_JSON>	<ATLAS_DIR>	meta-llama/Llama-3.2-3B	<MERGED_TEACHER>	<TRAIN_JSON>	<VAL_JSON>
+8b_15	llama31_8b	15	25	policy_medoid	<STEP0_CHECKPOINT>	<POLICY_JSON>	<ATLAS_DIR>	meta-llama/Llama-3.1-8B	<MERGED_TEACHER>	<TRAIN_JSON>	<VAL_JSON>
+8b_20	llama31_8b	20	23	policy_medoid	<STEP0_CHECKPOINT>	<POLICY_JSON>	<ATLAS_DIR>	meta-llama/Llama-3.1-8B	<MERGED_TEACHER>	<TRAIN_JSON>	<VAL_JSON>
+8b_25	llama31_8b	25	20	medoid	<STEP0_CHECKPOINT>	<POLICY_JSON>	<ATLAS_DIR>	meta-llama/Llama-3.1-8B	<MERGED_TEACHER>	<TRAIN_JSON>	<VAL_JSON>

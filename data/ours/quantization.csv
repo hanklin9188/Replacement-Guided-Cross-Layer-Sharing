@@ -1,0 +1,7 @@
+method,model_id,backbone,nominal_target,precision,macro_accuracy,serialized_gib,quantizer,source_status
+Ours,8b_15,Llama-3.1-8B,15,bf16,0.864812097867814,12.674358256161213,none,observed
+Ours,8b_15,Llama-3.1-8B,15,w8a16,0.865220121023016,7.318176381289959,torchao_int8_weight_only_symmetric_per_channel_v2,observed
+Ours,8b_15,Llama-3.1-8B,15,w4a16,0.8390949136937126,4.720536984503269,torchao_int4_weight_only_group128_tile_packed_tinygemm_v2,observed
+Ours,8b_25,Llama-3.1-8B,25,bf16,0.8628098273629181,11.04349822551012,none,observed
+Ours,8b_25,Llama-3.1-8B,25,w8a16,0.8634494075826236,6.502623679116368,torchao_int8_weight_only_symmetric_per_channel_v2,observed
+Ours,8b_25,Llama-3.1-8B,25,w4a16,0.7876183742014982,4.392972262576222,torchao_int4_weight_only_group128_tile_packed_tinygemm_v2,observed

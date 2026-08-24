@@ -1,0 +1,115 @@
+project:
+  name: replacement_guided_cross_layer_sharing
+  output_root: outputs
+  cache_root: .cache
+  seed: 2027
+  code_revision: auto
+
+models:
+  llama32_3b:
+    model_id: meta-llama/Llama-3.2-3B
+    revision: 13afe5124825b4f3751f836b40dafda64c1ed062
+    tokenizer_revision: 13afe5124825b4f3751f836b40dafda64c1ed062
+    layers: 28
+    budgets: [22, 19, 17]
+    nominal_targets: [15, 20, 25]
+    main_k: 19
+    dtype: bfloat16
+  llama31_8b:
+    model_id: meta-llama/Llama-3.1-8B
+    revision: d04e592bb4f6aa9cfee91e2e20afa771667e1d4b
+    tokenizer_revision: d04e592bb4f6aa9cfee91e2e20afa771667e1d4b
+    layers: 32
+    budgets: [25, 23, 20]
+    nominal_targets: [15, 20, 25]
+    main_k: 23
+    dtype: bfloat16
+
+data:
+  calibration:
+    dataset: Salesforce/wikitext
+    subset: wikitext-103-raw-v1
+    split: train
+    block_length: 512
+    token_counts: [2048, 8192, 32768]
+    main_valid_tokens: 8192
+    subset_seeds: [12027, 22027, 32027]
+  heldout_nll:
+    dataset: Salesforce/wikitext
+    subset: wikitext-103-raw-v1
+    split: validation
+    valid_tokens: 16384
+  tasks:
+    - piqa
+    - social_i_qa
+    - winogrande
+    - arc_challenge
+    - arc_easy
+    - hellaswag
+    - openbookqa
+  recovery_fraction: 0.90
+  validation_fraction: 0.10
+  max_recovery_examples_per_task: 4000
+  max_validation_examples_per_task: 500
+
+replacement:
+  lambda_kl: 1.0
+  batch_size: 1
+  logit_storage_dtype: float16
+  input_cosine_min: 0.50
+  max_group_span: null
+  depth_regimes: 4
+  row_array_concurrency: 4
+
+student:
+  adapter_rank: 128
+  adapter_alpha: 128
+  adapter_output_zero_init: true
+  train_shared_ffn: true
+  freeze_attention: true
+
+teacher:
+  method: lora
+  rank: 64
+  alpha: 128
+  dropout: 0.05
+  epochs: 2
+  learning_rate: 2.0e-5
+  batch_size: 1
+  gradient_accumulation: 16
+  max_length: 384
+
+# Portable reference-pipeline defaults. Exact paper-scale schedules are in
+# docs/REPRODUCTION.md and reproduction/ours/scripts/run_paper_recovery.sh.
+recovery:
+  updates: 1000
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.10
+  batch_size: 1
+  gradient_accumulation: 2
+  max_length: 384
+  projection_ranks: [64, 128, 256]
+  main_projection_rank: 128
+  lambda_grid: [0.03, 0.1, 0.3, 1.0, 3.0]
+  main_lambda_align: 0.3
+  epsilon: 1.0e-5
+  supervised_layers: final
+  seeds: [42, 43, 44]
+  checkpoint_rule: lowest_heldout_decision_ce
+  validation_interval: 500
+  selection_examples_per_task: 100
+  geometry_examples: 320
+
+evaluation:
+  batch_size: 1
+  length_norm: none
+  bootstrap_samples: 10000
+  bootstrap_seed: 42027
+
+efficiency:
+  prompt_length: 256
+  generation_length: 128
+  batch_size: 1
+  warmup_repetitions: 3
+  timed_repetitions: 10

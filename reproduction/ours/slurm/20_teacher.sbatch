@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=ic27_teacher
+#SBATCH --account=mst114566
+#SBATCH --partition=normal
+#SBATCH --time=24:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=12
+#SBATCH --mem=160G
+#SBATCH --gpus-per-node=1
+#SBATCH --array=0-1%2
+#SBATCH --output=logs/%x-%A_%a.out
+#SBATCH --error=logs/%x-%A_%a.err
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+BACKBONES=(llama32_3b llama31_8b)
+rgcls teacher --backbone "${BACKBONES[$SLURM_ARRAY_TASK_ID]}"

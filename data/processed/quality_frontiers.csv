@@ -1,0 +1,55 @@
+backbone,method,target,x_compression,regime,mean_macro,sd_macro,source
+Llama-3.2-3B,Basis Sharing,15,15,CE,0.7104,0.0012,frozen main.tex observed table
+Llama-3.2-3B,Basis Sharing,20,20,CE,0.4891,0.1384,frozen main.tex observed table
+Llama-3.2-3B,Basis Sharing,25,25,CE,0.3373,0.0048,frozen main.tex observed table
+Llama-3.2-3B,Basis Sharing,15,15,CE+KD,0.7128,0.0052,frozen main.tex observed table
+Llama-3.2-3B,Basis Sharing,20,20,CE+KD,0.6815,0.0054,frozen main.tex observed table
+Llama-3.2-3B,Basis Sharing,25,25,CE+KD,0.6506,0.002,frozen main.tex observed table
+Llama-3.2-3B,Basis Sharing,15,15,Pure,0.332,0,frozen main.tex observed table
+Llama-3.2-3B,Basis Sharing,20,20,Pure,0.332,0,frozen main.tex observed table
+Llama-3.2-3B,Basis Sharing,25,25,Pure,0.3322,0,frozen main.tex observed table
+Llama-3.2-3B,SVD-LLM,15,15,CE,0.5736,0.2032,frozen main.tex observed table
+Llama-3.2-3B,SVD-LLM,20,20,CE,0.3349,0.0022,frozen main.tex observed table
+Llama-3.2-3B,SVD-LLM,25,25,CE,0.3362,0.0037,frozen main.tex observed table
+Llama-3.2-3B,SVD-LLM,15,15,CE+KD,0.7078,0.0013,frozen main.tex observed table
+Llama-3.2-3B,SVD-LLM,20,20,CE+KD,0.6732,0.0028,frozen main.tex observed table
+Llama-3.2-3B,SVD-LLM,25,25,CE+KD,0.6358,0.0073,frozen main.tex observed table
+Llama-3.2-3B,SVD-LLM,15,15,Pure,0.332,0,frozen main.tex observed table
+Llama-3.2-3B,SVD-LLM,20,20,Pure,0.332,0,frozen main.tex observed table
+Llama-3.2-3B,SVD-LLM,25,25,Pure,0.3322,0,frozen main.tex observed table
+Llama-3.2-3B,Ours,15,13.9527269958,CE,0.8535274701893294,0.001679127326862351,validated ours_main_summary.csv
+Llama-3.2-3B,Ours,20,20.9290909294,CE,0.8506828873580601,0.005432651890413281,validated ours_main_summary.csv
+Llama-3.2-3B,Ours,25,25.5800002185,CE,0.8460106442859117,0.00119112570821055,validated ours_main_summary.csv
+Llama-3.2-3B,Ours,15,13.9527269958,CE+KD,0.8482918238847924,0.004457006890123404,validated ours_main_summary.csv
+Llama-3.2-3B,Ours,20,20.9290909294,CE+KD,0.8505081502410105,0.0009202346568139234,validated ours_main_summary.csv
+Llama-3.2-3B,Ours,25,25.5800002185,CE+KD,0.8409990491044347,0.0015739601164883375,validated ours_main_summary.csv
+Llama-3.2-3B,Ours,15,13.9527269958,Pure,0.33207202701570926,0.0,validated ours_main_summary.csv
+Llama-3.2-3B,Ours,20,20.9290909294,Pure,0.33946485890052297,0.0,validated ours_main_summary.csv
+Llama-3.2-3B,Ours,25,25.5800002185,Pure,0.33769234988640306,0.0,validated ours_main_summary.csv
+Llama-3.1-8B,Basis Sharing,15,15,CE,0.7605,0.0039,frozen main.tex observed table
+Llama-3.1-8B,Basis Sharing,20,20,CE,0.7281,0.0075,frozen main.tex observed table
+Llama-3.1-8B,Basis Sharing,25,25,CE,0.3316,0.0004,frozen main.tex observed table
+Llama-3.1-8B,Basis Sharing,15,15,CE+KD,0.7643,0.0047,frozen main.tex observed table
+Llama-3.1-8B,Basis Sharing,20,20,CE+KD,0.7389,0.0054,frozen main.tex observed table
+Llama-3.1-8B,Basis Sharing,25,25,CE+KD,0.6996,0.0064,frozen main.tex observed table
+Llama-3.1-8B,Basis Sharing,15,15,Pure,0.3327,0,frozen main.tex observed table
+Llama-3.1-8B,Basis Sharing,20,20,Pure,0.332,0,frozen main.tex observed table
+Llama-3.1-8B,Basis Sharing,25,25,Pure,0.332,0,frozen main.tex observed table
+Llama-3.1-8B,SVD-LLM,15,15,CE,0.7443,0.0019,frozen main.tex observed table
+Llama-3.1-8B,SVD-LLM,20,20,CE,0.5877,0.2174,frozen main.tex observed table
+Llama-3.1-8B,SVD-LLM,25,25,CE,0.3332,0.0026,frozen main.tex observed table
+Llama-3.1-8B,SVD-LLM,15,15,CE+KD,0.7531,0.0089,frozen main.tex observed table
+Llama-3.1-8B,SVD-LLM,20,20,CE+KD,0.7301,0.0074,frozen main.tex observed table
+Llama-3.1-8B,SVD-LLM,25,25,CE+KD,0.6964,0.0034,frozen main.tex observed table
+Llama-3.1-8B,SVD-LLM,15,15,Pure,0.3321,0,frozen main.tex observed table
+Llama-3.1-8B,SVD-LLM,20,20,Pure,0.332,0,frozen main.tex observed table
+Llama-3.1-8B,SVD-LLM,25,25,Pure,0.3321,0,frozen main.tex observed table
+Llama-3.1-8B,Ours,15,14.9381305907,CE,0.8553729878971486,0.003295170765128119,validated ours_main_summary.csv
+Llama-3.1-8B,Ours,20,19.3255536784,CE,0.6803833743634881,0.17016448182608285,validated ours_main_summary.csv
+Llama-3.1-8B,Ours,25,25.90668831,CE,0.8166980810321502,0.05959728500591956,validated ours_main_summary.csv
+Llama-3.1-8B,Ours,15,14.9381305907,CE+KD,0.8615016566512523,0.0033433292166222795,validated ours_main_summary.csv
+Llama-3.1-8B,Ours,20,19.3255536784,CE+KD,0.8595336690913894,0.0031639532801240413,validated ours_main_summary.csv
+Llama-3.1-8B,Ours,25,25.90668831,CE+KD,0.8591683482779017,0.0034939155047985877,validated ours_main_summary.csv
+Llama-3.1-8B,Ours,15,14.9381305907,Pure,0.36267826963415145,0.0,validated ours_main_summary.csv
+Llama-3.1-8B,Ours,20,19.3255536784,Pure,0.3364934302763761,0.0,validated ours_main_summary.csv
+Llama-3.1-8B,Ours,25,25.90668831,Pure,0.3405347648485854,0.0,validated ours_main_summary.csv

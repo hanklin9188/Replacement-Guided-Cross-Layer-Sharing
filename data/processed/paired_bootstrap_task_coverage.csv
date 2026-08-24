@@ -1,0 +1,253 @@
+comparison,model_id,seed,task,ours_n,other_n,matched_n,canonical_id_match,source_index_match,normalized_gold_match,original_id_scheme_same
+Ours-Basis Sharing,3b_15,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,3b_15,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,3b_15,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,3b_15,42,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,3b_15,42,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,3b_15,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,3b_15,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,3b_15,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,3b_15,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,3b_15,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,3b_15,43,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,3b_15,43,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,3b_15,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,3b_15,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,3b_15,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,3b_15,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,3b_15,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,3b_15,44,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,3b_15,44,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,3b_15,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,3b_15,44,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,3b_20,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,3b_20,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,3b_20,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,3b_20,42,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,3b_20,42,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,3b_20,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,3b_20,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,3b_20,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,3b_20,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,3b_20,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,3b_20,43,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,3b_20,43,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,3b_20,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,3b_20,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,3b_20,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,3b_20,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,3b_20,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,3b_20,44,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,3b_20,44,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,3b_20,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,3b_20,44,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,3b_25,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,3b_25,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,3b_25,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,3b_25,42,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,3b_25,42,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,3b_25,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,3b_25,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,3b_25,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,3b_25,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,3b_25,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,3b_25,43,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,3b_25,43,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,3b_25,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,3b_25,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,3b_25,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,3b_25,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,3b_25,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,3b_25,44,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,3b_25,44,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,3b_25,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,3b_25,44,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,8b_15,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,8b_15,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,8b_15,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,8b_15,42,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,8b_15,42,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,8b_15,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,8b_15,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,8b_15,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,8b_15,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,8b_15,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,8b_15,43,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,8b_15,43,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,8b_15,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,8b_15,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,8b_15,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,8b_15,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,8b_15,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,8b_15,44,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,8b_15,44,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,8b_15,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,8b_15,44,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,8b_20,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,8b_20,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,8b_20,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,8b_20,42,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,8b_20,42,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,8b_20,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,8b_20,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,8b_20,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,8b_20,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,8b_20,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,8b_20,43,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,8b_20,43,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,8b_20,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,8b_20,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,8b_20,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,8b_20,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,8b_20,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,8b_20,44,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,8b_20,44,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,8b_20,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,8b_20,44,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,8b_25,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,8b_25,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,8b_25,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,8b_25,42,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,8b_25,42,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,8b_25,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,8b_25,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,8b_25,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,8b_25,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,8b_25,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,8b_25,43,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,8b_25,43,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,8b_25,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,8b_25,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-Basis Sharing,8b_25,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-Basis Sharing,8b_25,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-Basis Sharing,8b_25,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-Basis Sharing,8b_25,44,openbookqa,500,500,500,True,True,True,False
+Ours-Basis Sharing,8b_25,44,piqa,1838,1838,1838,True,True,True,False
+Ours-Basis Sharing,8b_25,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-Basis Sharing,8b_25,44,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,3b_15,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,3b_15,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,3b_15,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,3b_15,42,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,3b_15,42,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,3b_15,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,3b_15,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,3b_15,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,3b_15,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,3b_15,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,3b_15,43,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,3b_15,43,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,3b_15,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,3b_15,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,3b_15,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,3b_15,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,3b_15,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,3b_15,44,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,3b_15,44,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,3b_15,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,3b_15,44,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,3b_20,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,3b_20,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,3b_20,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,3b_20,42,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,3b_20,42,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,3b_20,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,3b_20,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,3b_20,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,3b_20,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,3b_20,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,3b_20,43,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,3b_20,43,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,3b_20,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,3b_20,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,3b_20,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,3b_20,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,3b_20,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,3b_20,44,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,3b_20,44,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,3b_20,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,3b_20,44,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,3b_25,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,3b_25,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,3b_25,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,3b_25,42,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,3b_25,42,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,3b_25,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,3b_25,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,3b_25,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,3b_25,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,3b_25,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,3b_25,43,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,3b_25,43,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,3b_25,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,3b_25,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,3b_25,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,3b_25,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,3b_25,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,3b_25,44,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,3b_25,44,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,3b_25,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,3b_25,44,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,8b_15,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,8b_15,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,8b_15,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,8b_15,42,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,8b_15,42,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,8b_15,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,8b_15,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,8b_15,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,8b_15,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,8b_15,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,8b_15,43,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,8b_15,43,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,8b_15,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,8b_15,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,8b_15,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,8b_15,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,8b_15,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,8b_15,44,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,8b_15,44,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,8b_15,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,8b_15,44,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,8b_20,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,8b_20,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,8b_20,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,8b_20,42,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,8b_20,42,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,8b_20,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,8b_20,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,8b_20,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,8b_20,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,8b_20,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,8b_20,43,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,8b_20,43,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,8b_20,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,8b_20,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,8b_20,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,8b_20,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,8b_20,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,8b_20,44,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,8b_20,44,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,8b_20,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,8b_20,44,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,8b_25,42,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,8b_25,42,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,8b_25,42,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,8b_25,42,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,8b_25,42,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,8b_25,42,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,8b_25,42,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,8b_25,43,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,8b_25,43,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,8b_25,43,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,8b_25,43,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,8b_25,43,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,8b_25,43,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,8b_25,43,winogrande,1267,1267,1267,True,True,True,False
+Ours-SVD-LLM,8b_25,44,ARC-Challenge,1172,1172,1172,True,True,True,False
+Ours-SVD-LLM,8b_25,44,ARC-Easy,2376,2376,2376,True,True,True,False
+Ours-SVD-LLM,8b_25,44,hellaswag,10042,10042,10042,True,True,True,False
+Ours-SVD-LLM,8b_25,44,openbookqa,500,500,500,True,True,True,False
+Ours-SVD-LLM,8b_25,44,piqa,1838,1838,1838,True,True,True,False
+Ours-SVD-LLM,8b_25,44,social_i_qa,1954,1954,1954,True,True,True,False
+Ours-SVD-LLM,8b_25,44,winogrande,1267,1267,1267,True,True,True,False

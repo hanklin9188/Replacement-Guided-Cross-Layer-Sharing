@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "failures": [],
+  "bootstrap_rows": 288,
+  "coverage_rows": 252,
+  "serialized_rows": 12
+}
