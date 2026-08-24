@@ -24,7 +24,22 @@ elif command -v gs >/dev/null 2>&1; then
     -dFirstPage=1 -dLastPage=1 \
     -sOutputFile=assets/figures/framework.png paper/Figure/replace.pdf
 else
-  echo 'No PDF rasterizer found (pdftoppm, magick, or gs).' >&2
-  exit 1
+  module load miniconda3/24.11.1
+  PYTHON_BIN=${PYTHON_BIN:-python}
+  if ! "${PYTHON_BIN}" -c 'import fitz' >/dev/null 2>&1; then
+    echo 'No PDF rasterizer found. Install requirements-analysis.txt or set PYTHON_BIN.' >&2
+    exit 1
+  fi
+  "${PYTHON_BIN}" - <<'PY'
+from pathlib import Path
+import fitz
+
+root = Path.cwd()
+document = fitz.open(root / "paper/Figure/replace.pdf")
+page = document.load_page(0)
+page.get_pixmap(matrix=fitz.Matrix(2.5, 2.5), alpha=False).save(
+    root / "assets/figures/framework.png"
+)
+PY
 fi
 test -s assets/figures/framework.png
