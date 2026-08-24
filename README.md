@@ -1,6 +1,6 @@
 <div align="center">
 
-# RGCLS · Replacement-Guided Cross-Layer Sharing
+# Replacement-Guided Cross-Layer Sharing
 ### Budgeted LLM compression through directed functional replacement, fixed sharing structure, and recoverability-aware evaluation.
 
 [![Verify repository](https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing/actions/workflows/verify.yml/badge.svg)](https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing/actions/workflows/verify.yml)
@@ -64,9 +64,9 @@ cutting standalone storage substantially:
 | Structure | Precision | Macro accuracy | Serialized size |
 |---|---|---:|---:|
 | 15% | BF16 | 86.48% | 12.67 GiB |
-| 15% | W8A16 | **86.52%** | **7.32 GiB** |
+| 15% | INT8 | **86.52%** | **7.32 GiB** |
 | 25% | BF16 | 86.28% | 11.04 GiB |
-| 25% | W8A16 | **86.34%** | **6.50 GiB** |
+| 25% | INT8 | **86.34%** | **6.50 GiB** |
 
 The cross-method quantization figure is intentionally generated only after the
 external Basis Sharing and SVD-LLM manifests pass validation. Until then the
