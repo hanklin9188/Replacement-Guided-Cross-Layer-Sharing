@@ -30,4 +30,4 @@
 | `scripts/import_external_baselines.py` | Scheduled external payload validator and hasher. |
 | `scripts/generate_paper_figures.py` | Rebuilds data-driven non-quantization figures. |
 | `scripts/generate_quantization_figure.py` | Refuses output until all three methods are complete. |
-| `docs/github-actions/verify.yml` | Ready-to-enable workflow for push and pull-request audits. |
+| `.github/workflows/verify.yml` | Runs the public integrity audit on every push and pull request. |

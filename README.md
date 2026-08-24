@@ -3,7 +3,7 @@
 # RGCLS · Replacement-Guided Cross-Layer Sharing
 ### Budgeted LLM compression through directed functional replacement, fixed sharing structure, and recoverability-aware evaluation.
 
-[![Repository audit](https://img.shields.io/badge/audit-3%2C820%20checks%20passing-2f6f62)](scripts/verify_repository.py)
+[![Verify repository](https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing/actions/workflows/verify.yml/badge.svg)](https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing/actions/workflows/verify.yml)
 [![Paper](https://img.shields.io/badge/paper-ICASSP%202027-8A2BE2)](paper/main.pdf)
 [![Artifact](https://img.shields.io/badge/artifact-auditable-2f6f62)](REPRODUCIBILITY.md)
 [![External baselines](https://img.shields.io/badge/Basis%20Sharing%20%2F%20SVD--LLM-import%20slots-f0ad4e)](data/external/README.md)
@@ -96,8 +96,8 @@ python scripts/verify_repository.py
 It recomputes all Ours macro means and seed standard deviations from the
 released per-task rows, checks structural identities and paired-example
 coverage, validates citations and local links, and rejects private cluster
-paths or credentials. A ready-to-enable Actions workflow is retained at
-`docs/github-actions/verify.yml`.
+paths or credentials. GitHub Actions runs the same audit on every push and
+pull request.
 
 On NCHC, submit the same check through Slurm:
 
