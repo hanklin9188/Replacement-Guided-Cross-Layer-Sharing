@@ -9,7 +9,8 @@
   for the native PGFPlots figure; the scheduled build emits
   `structural_validation.pdf`.
 - `structural_validation_data/`: compact generated plot tables committed so the
-  paper remains buildable without rerunning model analysis.
+  paper remains buildable without rerunning model analysis. Panel (c) stores
+  $C^\star=C_{\mathrm{joint}}/L$, using 28 layers for 3B and 32 for 8B.
 - `../../scripts/export_structural_validation_pgfplots.py`: standard-library
   exporter from the released analysis CSV files.
 - `../../slurm/compile_structural_validation_standalone.sbatch`: scheduled

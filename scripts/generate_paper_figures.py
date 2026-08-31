@@ -22,6 +22,7 @@ DATA_DIR = ROOT / 'data' / 'processed'
 
 COLORS = {'Ours':'#0072B2','Basis Sharing':'#D55E00','SVD-LLM':'#009E73'}
 BACKBONE_STYLE = {'Llama-3.2-3B':('-', 'o', '3B'),'Llama-3.1-8B':('--','s','8B')}
+BACKBONE_LAYERS = {'Llama-3.2-3B':28,'Llama-3.1-8B':32}
 ORDER_METHOD = ['Basis Sharing','SVD-LLM','Ours']
 ORDER_BACKBONE = ['Llama-3.2-3B','Llama-3.1-8B']
 TARGETS = [15,20,25]
@@ -51,6 +52,31 @@ def write_csv(path, rows):
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open('w', encoding='utf-8', newline='') as handle:
         writer=csv.DictWriter(handle, fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
+
+
+def c_star(row):
+    """Return simultaneous-deployment distortion normalized per logical layer."""
+    return float(row['C_joint']) / BACKBONE_LAYERS[row['backbone']]
+
+
+def annotate_joint_point(ax, row, x, y):
+    """Place operating-point labels without collisions across the two backbones."""
+    key=(row['backbone'],int(row['nominal_target']))
+    offsets={
+        ('Llama-3.2-3B',15):(3,-8),
+        ('Llama-3.2-3B',20):(3,-8),
+        ('Llama-3.2-3B',25):(3,3),
+        ('Llama-3.1-8B',15):(-3,5),
+        ('Llama-3.1-8B',20):(-3,3),
+        ('Llama-3.1-8B',25):(-3,3),
+    }
+    offset=offsets[key]
+    ax.annotate(
+        f"{row['nominal_target']}%",(x,y),xytext=offset,
+        textcoords='offset points',fontsize=6.2,
+        ha='right' if offset[0] < 0 else 'left',
+        va='bottom' if offset[1] >= 0 else 'top',
+    )
 
 
 def save_figure(fig, name, copy_to_paper=False):
@@ -173,11 +199,13 @@ def plot_joint():
     fig,ax=plt.subplots(figsize=(2.65,2.05));palette={'Llama-3.2-3B':'#0072B2','Llama-3.1-8B':'#CC79A7'}
     for backbone in ORDER_BACKBONE:
         sel=sorted([r for r in rows if r['backbone']==backbone],key=lambda r:int(r['nominal_target']))
-        x=np.asarray([float(r['Delta_max']) for r in sel]);y=np.asarray([float(r['C_joint']) for r in sel]);sizes=260*np.asarray([float(r['Pure_drop']) for r in sel])+18
+        x=np.asarray([float(r['Delta_max']) for r in sel]);y=np.asarray([c_star(r) for r in sel]);sizes=260*np.asarray([float(r['Pure_drop']) for r in sel])+18
         ax.plot(x,y,color=palette[backbone],lw=1.0,alpha=.65)
         ax.scatter(x,y,s=sizes,color=palette[backbone],edgecolor='white',linewidth=.6,label=BACKBONE_STYLE[backbone][2],zorder=3)
-        for r,xx,yy in zip(sel,x,y):ax.annotate(f"{r['nominal_target']}%",(xx,yy),xytext=(3,2),textcoords='offset points',fontsize=6.2)
-    ax.set_xlabel(r'$\max_k C_{\max}(\mathcal{G}_k)$');ax.set_ylabel(r'Joint distortion $C_{\mathrm{joint}}$')
+        for r,xx,yy in zip(sel,x,y):annotate_joint_point(ax,r,xx,yy)
+    ax.plot([.44,1.0],[.44,1.0],ls='--',lw=.9,color='#333',zorder=1)
+    ax.set_xlim(.44,1.0);ax.set_ylim(.50,1.40)
+    ax.set_xlabel(r'$\max_k C_{\max}(\mathcal{G}_k)$');ax.set_ylabel(r'Per-layer joint cost $C^\star$')
     ax.legend(frameon=False,loc='upper left');fig.tight_layout(pad=.4)
     save_figure(fig,'diag_joint',copy_to_paper=True)
 
@@ -220,18 +248,19 @@ def plot_structural_validation_combined():
     ax.set_title('(b)',fontweight='semibold',pad=6)
     ax.legend(frameon=False,loc='upper left',fontsize=5.8)
 
-    # (c) Maximum worst pairwise replacement cost versus joint distortion.
+    # (c) Maximum worst pairwise replacement cost versus per-layer joint cost.
     rows=read_csv(ANALYSIS/'joint_analysis.csv');ax=axes[2]
     for backbone in ORDER_BACKBONE:
         selected=sorted([row for row in rows if row['backbone']==backbone],key=lambda row:int(row['nominal_target']))
         x=np.asarray([float(row['Delta_max']) for row in selected])
-        y=np.asarray([float(row['C_joint']) for row in selected])
+        y=np.asarray([c_star(row) for row in selected])
         sizes=260*np.asarray([float(row['Pure_drop']) for row in selected])+18
         ax.plot(x,y,color=palette[backbone],lw=1.0,alpha=1.0)
         ax.scatter(x,y,s=sizes,color=palette[backbone],alpha=1.0,edgecolor='white',linewidth=.6,label=BACKBONE_STYLE[backbone][2],zorder=3)
-        for row,xx,yy in zip(selected,x,y):
-            ax.annotate(f"{row['nominal_target']}%",(xx,yy),xytext=(3,2),textcoords='offset points',fontsize=6.2)
-    ax.set_xlabel(r'$\max_k C_{\max}(\mathcal{G}_k)$');ax.set_ylabel(r'Joint distortion $C_{\mathrm{joint}}$')
+        for row,xx,yy in zip(selected,x,y):annotate_joint_point(ax,row,xx,yy)
+    ax.plot([.44,1.0],[.44,1.0],ls='--',lw=.9,color='#333',zorder=1)
+    ax.set_xlim(.44,1.0);ax.set_ylim(.50,1.40)
+    ax.set_xlabel(r'$\max_k C_{\max}(\mathcal{G}_k)$');ax.set_ylabel(r'Per-layer joint cost $C^\star$')
     ax.set_title('(c)',fontweight='semibold',pad=6)
     ax.legend(frameon=False,loc='upper left',fontsize=5.8)
 
@@ -250,10 +279,10 @@ def plot_ablation():
     axes[0].bar(x-width/2,pure,width,color='#999999',label='Pure')
     axes[0].bar(x+width/2,kd,width,color=COLORS['Ours'],label='CE + KD')
     axes[0].set_ylim(.30,.88);axes[0].set_ylabel('Macro accuracy');axes[0].set_xticks(x,labels,rotation=18,ha='right');axes[0].legend(frameon=False,ncol=2)
-    cjoint=[float(lookup[v]['C_joint']) for v in order]
-    bars=axes[1].bar(x,cjoint,color=['#0072B2','#D55E00','#B3B3B3','#B3B3B3','#CC79A7'])
+    cstar=[c_star(lookup[v]) for v in order]
+    bars=axes[1].bar(x,cstar,color=['#0072B2','#D55E00','#B3B3B3','#B3B3B3','#CC79A7'])
     for idx in (2,3):bars[idx].set_hatch('///')
-    axes[1].set_ylabel(r'$C_{\mathrm{joint}}$');axes[1].set_xticks(x,labels,rotation=18,ha='right')
+    axes[1].set_ylabel(r'Per-layer joint cost $C^\star$');axes[1].set_xticks(x,labels,rotation=18,ha='right')
     axes[1].text(.98,.96,'* structurally identical to Full',transform=axes[1].transAxes,ha='right',va='top',fontsize=6.5,color='#555')
     fig.tight_layout(pad=.55,w_pad=1.0)
     save_figure(fig,'structural_ablation')
@@ -305,7 +334,7 @@ def main():
     qrows=quality_rows();write_csv(DATA_DIR/'quality_frontiers.csv',qrows)
     plot_quality(qrows,'Pure','quality_pure',(.315,.385));plot_quality(qrows,'CE','quality_ce',(.28,.90));plot_quality(qrows,'CE+KD','quality_kd',(.60,.89))
     plot_recovery();plot_asymmetry();plot_envelope();plot_joint();plot_structural_validation_combined();plot_ablation();plot_bootstrap();plot_bytes()
-    captions='''# Suggested captions
+    captions=r'''# Suggested captions
 
 ## Quality frontiers
 Seven-task macro accuracy versus matched whole-model reduction. Points show means over seeds 42/43/44 for CE and CE+KD; error bars are sample SD. Pure is evaluated without recovery. Solid/circle and dashed/square curves denote 3B and 8B, respectively.
@@ -319,8 +348,8 @@ Held-out directed replacement costs. Departures from the identity line demonstra
 ## Envelope tightness
 Groupwise pairwise envelope versus the best outward donor. Marker area is proportional to group size; every observed group satisfies delta(G) <= Delta(G).
 
-## Pairwise-to-joint distortion
-Maximum pairwise envelope versus simultaneous full-partition distortion. Labels give nominal reduction and marker area encodes Pure macro degradation, revealing interactions not captured by pairwise costs alone.
+## Pairwise-to-joint cost
+Maximum pairwise replacement cost versus the simultaneous full-partition cost per logical layer, $C^\star$. The dashed identity line gives the equal-cost reference; labels give nominal reduction and marker area encodes Pure macro degradation.
 
 ## Structural ablation
 Structural ablation at the 3B 20% operating point. Hatched variants collapse to the Full structure under the frozen K/pin/regime constraints and therefore reuse its observed result; the remaining variants are independently evaluated.

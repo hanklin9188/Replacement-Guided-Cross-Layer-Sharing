@@ -33,11 +33,11 @@ Scores are seven-task macro accuracy percentages; CE and CE+KD use seeds
   percentiles are 7.31 and 6.24.
 - Every released group satisfies `delta(G) <= Delta(G)`; the maximum observed
   envelope gap is 0.569.
-- Joint distortion rises from 17.34 to 33.39 on 3B and from 21.81 to 42.04 on
-  8B as compression increases.
+- Per-layer joint cost `C* = C_joint / L` rises from 0.619 to 1.193 on 3B and
+  from 0.682 to 1.314 on 8B as compression increases.
 - At 3B--20%, removing directionality reduces CE+KD from 85.12% to 83.29% and
-  raises joint distortion from 30.77 to 34.05. A symmetric representative
-  reaches 80.06% and joint distortion 87.71.
+  raises `C*` from 1.099 to 1.216. A symmetric representative reaches 80.06%
+  and `C*=3.132`.
 
 The exact rows are in `data/ours/pair_analysis.csv`,
 `data/ours/group_analysis.csv`, `data/ours/joint_analysis.csv`, and

@@ -16,10 +16,13 @@ REPO_ROOT=${SLURM_SUBMIT_DIR:?submit this job from the repository root}
 cd "${REPO_ROOT}"
 module load miniconda3/24.11.1
 export MPLBACKEND=Agg
-python -c "from scripts.generate_paper_figures import plot_structural_validation_combined; plot_structural_validation_combined()"
+python -c "from scripts.generate_paper_figures import plot_structural_validation_combined, plot_ablation; plot_structural_validation_combined(); plot_ablation()"
 
 for suffix in pdf png svg; do
     test -s "assets/figures/diag_structural_validation.${suffix}"
+done
+for suffix in pdf png svg; do
+    test -s "assets/figures/structural_ablation.${suffix}"
 done
 cp -p assets/figures/diag_structural_validation.pdf \
     paper/Figure/diag_structural_validation.pdf

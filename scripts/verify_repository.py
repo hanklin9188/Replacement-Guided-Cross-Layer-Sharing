@@ -15,6 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TASKS = {"PIQA", "SocialIQA", "WinoGrande", "ARC_C", "ARC_E", "HellaSwag", "OpenBookQA"}
 BACKBONES = {"Llama-3.2-3B", "Llama-3.1-8B"}
+BACKBONE_LAYERS = {"Llama-3.2-3B": 28, "Llama-3.1-8B": 32}
 TARGETS = {15, 20, 25}
 REGIMES = {"Pure", "CE", "CE+KD"}
 TEXT_SUFFIXES = {
@@ -166,7 +167,18 @@ def verify_structural_data(audit: Audit) -> None:
     for row in groups:
         audit.check(float(row["delta"]) <= float(row["Delta"]) + 1e-12, "group violates delta <= Delta")
         audit.check(close(row["envelope_gap"], float(row["Delta"]) - float(row["delta"])), "group envelope gap mismatch")
-    audit.check(all(float(row["C_joint"]) > 0 for row in joint), "joint distortion must be observed and positive")
+    audit.check(all(float(row["C_joint"]) > 0 for row in joint), "raw joint cost must be observed and positive")
+    for backbone, suffix in (("Llama-3.2-3B", "3b"), ("Llama-3.1-8B", "8b")):
+        observed = sorted(
+            (row for row in joint if row["backbone"] == backbone),
+            key=lambda row: int(row["nominal_target"]),
+        )
+        plotted = rows(f"paper/Figure/structural_validation_data/joint_{suffix}.csv")
+        audit.check(len(observed) == len(plotted) == 3, f"wrong C* point count for {backbone}")
+        for source, point in zip(observed, plotted):
+            expected = float(source["C_joint"]) / BACKBONE_LAYERS[backbone]
+            audit.check(close(point["x"], source["Delta_max"]), f"C* x mismatch for {backbone}")
+            audit.check(close(point["y"], expected), f"C* normalization mismatch for {backbone}")
 
 
 def verify_paper_and_external_tables(audit: Audit) -> None:

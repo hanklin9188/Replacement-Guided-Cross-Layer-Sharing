@@ -22,7 +22,7 @@
 | `data/ours/directed_costs.csv` | 1,748 finite off-diagonal directed replacement observations. |
 | `data/ours/pair_analysis.csv` | 874 mutual costs and directional asymmetries. |
 | `data/ours/group_analysis.csv` | Eleven selected non-singleton groups and envelope quantities. |
-| `data/ours/joint_analysis.csv` | Six simultaneous-deployment distortion rows. |
+| `data/ours/joint_analysis.csv` | Six raw simultaneous-deployment rows; figures report `C*=C_joint/L`. |
 | `data/ours/structural_ablation.csv` | Five 3B--20% structure variants and equivalence labels. |
 | `data/ours/quantization.csv` | Ours 8B--15/25% BF16/W8A16/W4A16 results. |
 | `data/processed/quantization/` | Complete cross-method plot points, per-task accuracy, paired intervals, and byte manifests. |

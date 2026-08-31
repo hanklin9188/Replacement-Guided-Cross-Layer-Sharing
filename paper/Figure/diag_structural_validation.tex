@@ -89,13 +89,15 @@
 
 \nextgroupplot[
   xmin=0.44, xmax=1.00,
-  ymin=16, ymax=44,
+  ymin=0.50, ymax=1.40,
   xtick={0.6,0.8},
-  ytick={20,25,30,35,40},
+  ytick={0.6,0.8,1.0,1.2,1.4},
   xlabel={$\max_k C_{\max}(\mathcal G_k)$},
-  ylabel={$C_{\mathrm{joint}}$},
+  ylabel={$C^\star$ (per layer)},
   legend pos=north west,
 ]
+\addplot[forget plot, black!75, dashed, line width=0.55pt, domain=0.44:1.00]
+  {x};
 \addlegendimage{only marks, mark=*, mark size=2.7pt, color=threeblue,
   mark options={draw=white, fill=threeblue, line width=0.4pt}}
 \addlegendentry{3B}
@@ -116,10 +118,16 @@
   mark size=2.56pt,
   color=threeblue,
   mark options={draw=white, fill=threeblue, line width=0.4pt},
+] table[x=x,y=y,col sep=comma]
+  {Figure/structural_validation_data/joint_3b.csv};
+\addplot[
+  forget plot,
+  only marks,
+  mark=none,
   point meta=explicit symbolic,
   nodes near coords,
-  every node near coord/.append style={font=\fontsize{6.2}{7.2}\selectfont, text=black, anchor=south west, inner sep=1pt},
-] table[x=x,y=y,meta=label,col sep=comma]
+  every node near coord/.append style={font=\fontsize{6.2}{7.2}\selectfont, text=black, anchor=center, inner sep=0pt},
+] table[x=label_x,y=label_y,meta=label,col sep=comma]
   {Figure/structural_validation_data/joint_3b.csv};
 \addplot[
   forget plot,
@@ -135,10 +143,16 @@
   mark size=3.52pt,
   color=eightred,
   mark options={draw=white, fill=eightred, line width=0.4pt},
+] table[x=x,y=y,col sep=comma]
+  {Figure/structural_validation_data/joint_8b.csv};
+\addplot[
+  forget plot,
+  only marks,
+  mark=none,
   point meta=explicit symbolic,
   nodes near coords,
-  every node near coord/.append style={font=\fontsize{6.2}{7.2}\selectfont, text=black, anchor=south west, inner sep=1pt},
-] table[x=x,y=y,meta=label,col sep=comma]
+  every node near coord/.append style={font=\fontsize{6.2}{7.2}\selectfont, text=black, anchor=center, inner sep=0pt},
+] table[x=label_x,y=label_y,meta=label,col sep=comma]
   {Figure/structural_validation_data/joint_8b.csv};
 
 \end{groupplot}

@@ -63,6 +63,17 @@ parallel low-rank residual adapter. The sharing groups and representatives are
 frozen before recovery. Attention remains frozen; the shared FFN bank and
 parallel adapters are trainable in the released paper recipe.
 
+The simultaneous-deployment diagnostic is reported on the same per-layer scale
+as the pairwise replacement costs:
+
+```text
+C* = (joint DeltaNLL + lambda_KL joint KL) / L,
+```
+
+where `L=28` for Llama-3.2-3B and `L=32` for Llama-3.1-8B. The raw aggregate
+observation remains in the `C_joint` column of `data/ours/joint_analysis.csv`;
+the paper figure exporter performs and verifies the normalization.
+
 Three stages are kept separate:
 
 1. **Pure:** immutable step-0 shared checkpoint, no optimizer update.
