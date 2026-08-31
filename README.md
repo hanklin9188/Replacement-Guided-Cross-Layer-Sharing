@@ -4,7 +4,7 @@
 ### Budgeted LLM compression through directed functional replacement, fixed sharing structure, and recoverability-aware evaluation.
 
 [![Verify repository](https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing/actions/workflows/verify.yml/badge.svg)](https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing/actions/workflows/verify.yml)
-[![Paper](https://img.shields.io/badge/paper-ICASSP%202027-8A2BE2)](paper/main.pdf)
+[![Paper](https://img.shields.io/badge/paper-ICASSP%202027-8A2BE2)](paper/overview-3.pdf)
 [![Artifact](https://img.shields.io/badge/artifact-auditable-2f6f62)](REPRODUCIBILITY.md)
 [![Baselines](https://img.shields.io/badge/Basis%20Sharing%20%2F%20SVD--LLM-reproducible-2f6f62)](docs/BASELINES.md)
 
