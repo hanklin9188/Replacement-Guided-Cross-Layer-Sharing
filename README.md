@@ -8,7 +8,7 @@
 [![Artifact](https://img.shields.io/badge/artifact-auditable-2f6f62)](REPRODUCIBILITY.md)
 [![Baselines](https://img.shields.io/badge/Basis%20Sharing%20%2F%20SVD--LLM-reproducible-2f6f62)](docs/BASELINES.md)
 
-[繁體中文](README_zh-TW.md) · [Paper PDF](paper/main.pdf) · [Paper source](paper/README.md) · [Method](docs/METHOD.md) · [Results](docs/RESULTS.md) · [Reproduce](docs/REPRODUCTION.md) · [Baseline import](docs/BASELINES.md)
+[繁體中文](README_zh-TW.md) · [Paper PDF](paper/overview-3.pdf) · [Paper source](paper/README.md) · [Method](docs/METHOD.md) · [Results](docs/RESULTS.md) · [Reproduce](docs/REPRODUCTION.md) · [Baseline import](docs/BASELINES.md)
 
 <img src="assets/figures/framework.png" alt="Replacement-guided cross-layer sharing framework" width="100%">
 
