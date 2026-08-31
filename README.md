@@ -1,6 +1,6 @@
 <div align="center">
 
-# Replacement-Guided Cross-Layer Sharing
+# Cross-Layer Replacement Sharing for Model Compression
 ### Budgeted LLM compression through directed functional replacement, fixed sharing structure, and recoverability-aware evaluation.
 
 [![Verify repository](https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing/actions/workflows/verify.yml/badge.svg)](https://github.com/hanklin9188/Replacement-Guided-Cross-Layer-Sharing/actions/workflows/verify.yml)
