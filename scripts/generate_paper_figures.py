@@ -205,7 +205,7 @@ def plot_joint():
         for r,xx,yy in zip(sel,x,y):annotate_joint_point(ax,r,xx,yy)
     ax.plot([.44,1.0],[.44,1.0],ls='--',lw=.9,color='#333',zorder=1)
     ax.set_xlim(.44,1.0);ax.set_ylim(.50,1.40)
-    ax.set_xlabel(r'$\max_k C_{\max}(\mathcal{G}_k)$');ax.set_ylabel(r'Per-layer joint cost $C^\star$')
+    ax.set_xlabel(r'$\max_k C_{\max}(\mathcal{G}_k)$');ax.set_ylabel(r'$C^\star$')
     ax.legend(frameon=False,loc='upper left');fig.tight_layout(pad=.4)
     save_figure(fig,'diag_joint',copy_to_paper=True)
 
@@ -248,7 +248,7 @@ def plot_structural_validation_combined():
     ax.set_title('(b)',fontweight='semibold',pad=6)
     ax.legend(frameon=False,loc='upper left',fontsize=5.8)
 
-    # (c) Maximum worst pairwise replacement cost versus per-layer joint cost.
+    # (c) Maximum worst pairwise replacement cost versus normalized joint cost.
     rows=read_csv(ANALYSIS/'joint_analysis.csv');ax=axes[2]
     for backbone in ORDER_BACKBONE:
         selected=sorted([row for row in rows if row['backbone']==backbone],key=lambda row:int(row['nominal_target']))
@@ -260,7 +260,7 @@ def plot_structural_validation_combined():
         for row,xx,yy in zip(selected,x,y):annotate_joint_point(ax,row,xx,yy)
     ax.plot([.44,1.0],[.44,1.0],ls='--',lw=.9,color='#333',zorder=1)
     ax.set_xlim(.44,1.0);ax.set_ylim(.50,1.40)
-    ax.set_xlabel(r'$\max_k C_{\max}(\mathcal{G}_k)$');ax.set_ylabel(r'Per-layer joint cost $C^\star$')
+    ax.set_xlabel(r'$\max_k C_{\max}(\mathcal{G}_k)$');ax.set_ylabel(r'$C^\star$')
     ax.set_title('(c)',fontweight='semibold',pad=6)
     ax.legend(frameon=False,loc='upper left',fontsize=5.8)
 
@@ -282,7 +282,7 @@ def plot_ablation():
     cstar=[c_star(lookup[v]) for v in order]
     bars=axes[1].bar(x,cstar,color=['#0072B2','#D55E00','#B3B3B3','#B3B3B3','#CC79A7'])
     for idx in (2,3):bars[idx].set_hatch('///')
-    axes[1].set_ylabel(r'Per-layer joint cost $C^\star$');axes[1].set_xticks(x,labels,rotation=18,ha='right')
+    axes[1].set_ylabel(r'$C^\star$');axes[1].set_xticks(x,labels,rotation=18,ha='right')
     axes[1].text(.98,.96,'* structurally identical to Full',transform=axes[1].transAxes,ha='right',va='top',fontsize=6.5,color='#555')
     fig.tight_layout(pad=.55,w_pad=1.0)
     save_figure(fig,'structural_ablation')

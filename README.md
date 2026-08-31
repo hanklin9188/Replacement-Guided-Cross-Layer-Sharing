@@ -31,13 +31,13 @@ different server.
 
 ## Structural validation figure
 
-<img src="assets/figures/diag_structural_validation.png" alt="Directed replacement asymmetry, group-bound validation, and per-layer joint cost" width="100%">
+<img src="assets/figures/diag_structural_validation.png" alt="Directed replacement asymmetry, group-bound validation, and normalized joint cost" width="100%">
 
 The manuscript uses a native PGFPlots/TikZ version of this figure. Compact plot
 tables are exported from `data/ours/pair_analysis.csv`,
 `data/ours/group_analysis.csv`, and `data/ours/joint_analysis.csv`; the
 standalone build then emits `paper/Figure/structural_validation.pdf`.
-Panel (c) reports the per-layer joint cost
+Panel (c) reports the normalized joint cost
 $C^\star=C_{\mathrm{joint}}/L$ against the maximum selected group cost, using
 $L=28$ for 3B and $L=32$ for 8B.
 

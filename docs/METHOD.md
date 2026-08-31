@@ -63,8 +63,8 @@ parallel low-rank residual adapter. The sharing groups and representatives are
 frozen before recovery. Attention remains frozen; the shared FFN bank and
 parallel adapters are trainable in the released paper recipe.
 
-The simultaneous-deployment diagnostic is reported on the same per-layer scale
-as the pairwise replacement costs:
+The simultaneous-deployment diagnostic is normalized to the same scale as the
+pairwise replacement costs:
 
 ```text
 C* = (joint DeltaNLL + lambda_KL joint KL) / L,

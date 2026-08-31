@@ -33,7 +33,7 @@ Scores are seven-task macro accuracy percentages; CE and CE+KD use seeds
   percentiles are 7.31 and 6.24.
 - Every released group satisfies `delta(G) <= Delta(G)`; the maximum observed
   envelope gap is 0.569.
-- Per-layer joint cost `C* = C_joint / L` rises from 0.619 to 1.193 on 3B and
+- Normalized joint cost `C* = C_joint / L` rises from 0.619 to 1.193 on 3B and
   from 0.682 to 1.314 on 8B as compression increases.
 - At 3B--20%, removing directionality reduces CE+KD from 85.12% to 83.29% and
   raises `C*` from 1.099 to 1.216. A symmetric representative reaches 80.06%

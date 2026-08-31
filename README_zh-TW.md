@@ -23,13 +23,13 @@ Slurm 工作與正式精簡結果也已整理完成。
 
 ## 結構驗證圖
 
-<img src="assets/figures/diag_structural_validation.png" alt="有向替換不對稱性、group bound 與每層 joint cost" width="100%">
+<img src="assets/figures/diag_structural_validation.png" alt="有向替換不對稱性、group bound 與 normalized joint cost" width="100%">
 
 論文使用原生 PGFPlots/TikZ 版本。腳本會從
 `data/ours/pair_analysis.csv`、`data/ours/group_analysis.csv` 和
 `data/ours/joint_analysis.csv` 匯出精簡畫圖資料，再產生
 `paper/Figure/structural_validation.pdf`。
-Panel (c) 以 $C^\star=C_{\mathrm{joint}}/L$ 表示每層 joint cost，並與最大
+Panel (c) 以 $C^\star=C_{\mathrm{joint}}/L$ 表示 normalized joint cost，並與最大
 group cost 比較；3B 使用 $L=28$，8B 使用 $L=32$。
 
 在 NCHC 請使用依賴關係完整重產與驗證：
@@ -63,7 +63,7 @@ Ours 的 8B--25% W8A16 checkpoint 為 6.50 GiB、86.34% macro accuracy；
 |---|---|
 | Ours 方法、訓練、評估與分析程式 | **已整理** |
 | Ours Pure / CE / CE+KD 資料 | **已整理並由驗證器檢查** |
-| 結構分析、每層 joint cost、ablation | **已整理並由驗證器檢查** |
+| 結構分析、normalized joint cost、ablation | **已整理並由驗證器檢查** |
 | Basis Sharing / SVD-LLM 受控重現程式 | **已整理** |
 | Baseline 設定、Slurm 與量化 pipeline | **已整理** |
 | 三方法正式量化資料與圖 | **已整理並由驗證器檢查** |

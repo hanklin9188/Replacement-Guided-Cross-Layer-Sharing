@@ -276,7 +276,7 @@ Equation~\eqref{eq:deployment-bound} characterizes isolated replacements;
 simultaneous sharing may introduce additional interactions, which we evaluate
 separately. To compare the simultaneous model with the single-replacement
 scale, let $p_{\mathrm{shared}}$ be the predictive distribution after deploying
-the complete sharing partition and define the per-layer joint cost
+the complete sharing partition and define the normalized joint cost
 \begin{equation}
 C^\star
 =
@@ -461,7 +461,7 @@ remains much easier to recover as the storage budget becomes tighter.
 (a) Directed replacement costs exhibit clear source--target asymmetry.
 (b) The best representation cost satisfies
 $C_{\mathrm{rep}}(\mathcal G)\leq C_{\max}(\mathcal G)$ for every observed group.
-(c) Per-layer joint cost $C^\star$ is compared directly with
+(c) $C^\star$ is compared directly with
 $\max_k C_{\max}(\mathcal G_k)$; the dashed line marks equality.}
 \label{fig:structural}
 \vspace{-1mm}
@@ -503,12 +503,12 @@ selected representative.
 
 \noindent\textbf{Pairwise versus joint deployment.}
 Figure~\ref{fig:structural}(c) compares the worst selected group cost with the
-per-layer simultaneous cost in Eq.~\eqref{eq:c-star}. As compression increases,
+normalized simultaneous cost in Eq.~\eqref{eq:c-star}. As compression increases,
 $C^\star$ rises from 0.619 to 1.193 on 3B and from 0.682 to 1.314 on 8B. The
 20\% and 25\% structures can share the same $\Delta_{\max}$ while producing
 different $C^\star$. All six observations lie above the dashed equality line,
 so pairwise quantities guide structural selection but do not numerically bound
-the simultaneous per-layer cost.
+the normalized simultaneous cost.
 
 \noindent\textbf{Ablation.}
 At the 3B--20\% operating point, the full method reaches 85.11\% CE+KD accuracy
