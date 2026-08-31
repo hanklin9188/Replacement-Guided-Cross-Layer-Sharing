@@ -8,7 +8,7 @@
 [![Artifact](https://img.shields.io/badge/artifact-auditable-2f6f62)](REPRODUCIBILITY.md)
 [![Baselines](https://img.shields.io/badge/Basis%20Sharing%20%2F%20SVD--LLM-reproducible-2f6f62)](docs/BASELINES.md)
 
-[繁體中文](README_zh-TW.md) · [Paper PDF](paper/overview-3.pdf) · [Paper source](paper/README.md) · [Method](docs/METHOD.md) · [Results](docs/RESULTS.md) · [Reproduce](docs/REPRODUCTION.md) · [Baseline import](docs/BASELINES.md)
+[繁體中文](README_zh-TW.md) · [Paper PDF](paper/Figure/overview-3.pdf) · [Paper source](paper/README.md) · [Method](docs/METHOD.md) · [Results](docs/RESULTS.md) · [Reproduce](docs/REPRODUCTION.md) · [Baseline import](docs/BASELINES.md)
 
 <img src="assets/figures/framework.png" alt="Replacement-guided cross-layer sharing framework" width="100%">
 
@@ -28,6 +28,26 @@ dump. Ours code, compact observations, paper sources, figures, validation
 scripts, and NCHC Slurm launchers are included. Basis Sharing and SVD-LLM have
 strict, ready-to-fill integration slots because their full runs live on a
 different server.
+
+## Structural validation figure
+
+<img src="assets/figures/diag_structural_validation.png" alt="Directed replacement asymmetry, group-bound validation, and joint-deployment distortion" width="100%">
+
+The manuscript uses a native PGFPlots/TikZ version of this figure. Compact plot
+tables are exported from `data/ours/pair_analysis.csv`,
+`data/ours/group_analysis.csv`, and `data/ours/joint_analysis.csv`; the
+standalone build then emits `paper/Figure/structural_validation.pdf`.
+
+On NCHC, regenerate and validate it through the dependency-gated Slurm chain:
+
+```bash
+smoke_job=$(sbatch --parsable slurm/smoke_structural_validation.sbatch)
+figure_job=$(sbatch --parsable --dependency="afterok:${smoke_job}" \
+  slurm/compile_structural_validation_standalone.sbatch)
+paper_job=$(sbatch --parsable --dependency="afterok:${figure_job}" \
+  slurm/compile_paper.sbatch)
+sbatch --dependency="afterok:${paper_job}" slurm/verify_repository.sbatch
+```
 
 ## What this project demonstrates
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-# RGCLS · Replacement-Guided Cross-Layer Sharing
+# Cross-Layer Replacement Sharing for Model Compression
 ### 以有方向性的全模型替換成本，建立可稽核、可恢復的跨層 FFN 分享結構
 
 [English](README.md) · [論文 PDF](paper/main.pdf) · [論文原始檔](paper/README.md) · [方法](docs/METHOD.md) · [結果](docs/RESULTS.md) · [重現](docs/REPRODUCTION.md) · [外部 baseline 匯入](docs/BASELINES.md)
@@ -20,6 +20,26 @@ donor-to-target 方向挑代表 FFN。
 精簡觀測資料、圖片、論文原始檔與驗證器都已納入；Basis Sharing 與
 SVD-LLM 的受控 compression、recovery、evaluation、量化程式、設定範本、
 Slurm 工作與正式精簡結果也已整理完成。
+
+## 結構驗證圖
+
+<img src="assets/figures/diag_structural_validation.png" alt="有向替換不對稱性、group bound 與 joint-deployment distortion" width="100%">
+
+論文使用原生 PGFPlots/TikZ 版本。腳本會從
+`data/ours/pair_analysis.csv`、`data/ours/group_analysis.csv` 和
+`data/ours/joint_analysis.csv` 匯出精簡畫圖資料，再產生
+`paper/Figure/structural_validation.pdf`。
+
+在 NCHC 請使用依賴關係完整重產與驗證：
+
+```bash
+smoke_job=$(sbatch --parsable slurm/smoke_structural_validation.sbatch)
+figure_job=$(sbatch --parsable --dependency="afterok:${smoke_job}" \
+  slurm/compile_structural_validation_standalone.sbatch)
+paper_job=$(sbatch --parsable --dependency="afterok:${figure_job}" \
+  slurm/compile_paper.sbatch)
+sbatch --dependency="afterok:${paper_job}" slurm/verify_repository.sbatch
+```
 
 ## 主要結果
 

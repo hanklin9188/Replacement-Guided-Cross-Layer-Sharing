@@ -9,6 +9,7 @@ __pycache__/
 cache/
 outputs/*
 !outputs/.gitkeep
+assets/previews/
 runs/
 artifacts/
 third_party/
@@ -39,6 +40,9 @@ paper/*.log
 paper/*.out
 paper/*.synctex.gz
 paper/main_anonymous.pdf
+paper/Figure/*.aux
+paper/Figure/*.log
+paper/Figure/diag_structural_validation_tikz.pdf
 
 .DS_Store
 .idea/

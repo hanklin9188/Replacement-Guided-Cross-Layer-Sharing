@@ -5,9 +5,7 @@
 
 \documentclass{article}
 \usepackage{spconf}
-\usepackage{amsmath,amssymb,amsfonts,booktabs,graphicx,cite}
-\usepackage{balance}
-\usepackage{stfloats}
+\usepackage{amsmath,amssymb,amsfonts,booktabs,graphicx}
 \usepackage{array}
 \usepackage{url}
 
@@ -23,7 +21,7 @@
 \setlength{\textfloatsep}{7pt plus 1pt minus 2pt}
 \setlength{\dbltextfloatsep}{7pt plus 1pt minus 2pt}
 \setlength{\floatsep}{6pt plus 1pt minus 2pt}
-\title{Replacement-Guided Cross-Layer Sharing for Model Compression}
+\title{Cross-Layer Replacement Sharing for Model Compression}
 
 \ifdefined\ANONYMOUS
   \name{Anonymous ICASSP 2027 submission}
@@ -444,14 +442,14 @@ remains much easier to recover as the storage budget becomes tighter.
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.96\textwidth]
-{Figure/diag_structural_validation.pdf}
-\caption{\textbf{Structural validation.}
-(a) Directed replacement costs show strong donor--target asymmetry.
-(b) The best representative cost satisfies
-$\delta(\mathcal G)\leq\Delta(\mathcal G)$ for every observed group.
-(c) Similar maximum group bounds can yield different joint distortion
-under simultaneous sharing.}
+\includegraphics[width=0.94\textwidth]
+{Figure/structural_validation.pdf}
+\caption{Structural validation.
+(a) Directed replacement costs exhibit clear source--target asymmetry.
+(b) The best representation cost satisfies
+$C_{\mathrm{rep}}(\mathcal G)\leq C_{\max}(\mathcal G)$ for every observed group.
+(c) Similar worst pairwise replacement costs can produce different joint
+distortion under simultaneous sharing.}
 \label{fig:structural}
 \vspace{-1mm}
 \end{figure*}

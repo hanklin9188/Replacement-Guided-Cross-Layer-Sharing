@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.18}
+
+% Tight canvas after removing panel titles and descriptive axis text.
+\setlength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{-1in}
+\setlength{\topmargin}{-1in}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\footskip}{0pt}
+\setlength{\textwidth}{7.15in}
+\setlength{\textheight}{1.95in}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+% article.cls resets the PDF media box at begin-document, so set it here.
+\pdfpagewidth=7.15in
+\pdfpageheight=1.95in
+\noindent
+\resizebox{7.15in}{!}{%
+  \input{Figure/diag_structural_validation.tex}%
+}
+\end{document}

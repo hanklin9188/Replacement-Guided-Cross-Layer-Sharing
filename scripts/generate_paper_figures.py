@@ -161,7 +161,8 @@ def plot_envelope():
         x=np.asarray([float(r['Delta']) for r in sel]);y=np.asarray([float(r['delta']) for r in sel]);sizes=np.asarray([float(r['group_size']) for r in sel])*8
         ax.scatter(x,y,s=sizes,color=palette[backbone],alpha=.78,edgecolor='white',linewidth=.5,label=BACKBONE_STYLE[backbone][2],zorder=3)
     lim=(0.18,1.04);ax.plot(lim,lim,ls='--',lw=.9,color='#333');ax.set_xlim(lim);ax.set_ylim(lim)
-    ax.set_xlabel(r'Envelope $\Delta(\mathcal{G})$');ax.set_ylabel(r'Best donor $\delta(\mathcal{G})$')
+    ax.set_xlabel('Worst pairwise replacement cost\n' + r'$C_{\max}(\mathcal{G})$')
+    ax.set_ylabel('Best representative cost\n' + r'$C_{\mathrm{rep}}(\mathcal{G})$')
     ax.legend(frameon=False,loc='upper left')
     fig.tight_layout(pad=.35)
     save_figure(fig,'diag_envelope',copy_to_paper=True)
@@ -176,14 +177,14 @@ def plot_joint():
         ax.plot(x,y,color=palette[backbone],lw=1.0,alpha=.65)
         ax.scatter(x,y,s=sizes,color=palette[backbone],edgecolor='white',linewidth=.6,label=BACKBONE_STYLE[backbone][2],zorder=3)
         for r,xx,yy in zip(sel,x,y):ax.annotate(f"{r['nominal_target']}%",(xx,yy),xytext=(3,2),textcoords='offset points',fontsize=6.2)
-    ax.set_xlabel(r'Pairwise envelope $\Delta_{\max}$');ax.set_ylabel(r'Joint distortion $C_{\mathrm{joint}}$')
+    ax.set_xlabel(r'$\max_k C_{\max}(\mathcal{G}_k)$');ax.set_ylabel(r'Joint distortion $C_{\mathrm{joint}}$')
     ax.legend(frameon=False,loc='upper left');fig.tight_layout(pad=.4)
     save_figure(fig,'diag_joint',copy_to_paper=True)
 
 
 def plot_structural_validation_combined():
     """Render the three structural diagnostics with identical panel geometry."""
-    palette={'Llama-3.2-3B':'#0072B2','Llama-3.1-8B':'#CC79A7'}
+    palette={'Llama-3.2-3B':'#0066CC','Llama-3.1-8B':'#CC0000'}
     fig,axes=plt.subplots(
         1,3,
         figsize=(7.15,2.35),
@@ -197,7 +198,7 @@ def plot_structural_validation_combined():
         x=np.asarray([float(row['C_i_to_j']) for row in selected])
         y=np.asarray([float(row['C_j_to_i']) for row in selected])
         allv.extend(x);allv.extend(y)
-        ax.scatter(x,y,s=7,alpha=.30,color=palette[backbone],edgecolors='none',rasterized=True,label=BACKBONE_STYLE[backbone][2])
+        ax.scatter(x,y,s=7,alpha=.40,color=palette[backbone],edgecolors='none',rasterized=True,label=BACKBONE_STYLE[backbone][2])
     low=max(.05,min(allv)*.8);high=max(allv)*1.15
     ax.plot([low,high],[low,high],ls='--',lw=.9,color='#333',label='Identity')
     ax.set_xscale('log');ax.set_yscale('log');ax.set_xlim(low,high);ax.set_ylim(low,high)
@@ -205,31 +206,32 @@ def plot_structural_validation_combined():
     ax.set_title('(a)',fontweight='semibold',pad=6)
     ax.legend(frameon=False,loc='lower right',handletextpad=.35,fontsize=5.8)
 
-    # (b) Group envelope and best outward donor.
+    # (b) Worst pairwise replacement cost and best representative cost.
     rows=read_csv(ANALYSIS/'group_analysis.csv');ax=axes[1]
     for backbone in ORDER_BACKBONE:
         selected=[row for row in rows if row['backbone']==backbone]
         x=np.asarray([float(row['Delta']) for row in selected])
         y=np.asarray([float(row['delta']) for row in selected])
         sizes=np.asarray([float(row['group_size']) for row in selected])*8
-        ax.scatter(x,y,s=sizes,color=palette[backbone],alpha=.78,edgecolor='white',linewidth=.5,label=BACKBONE_STYLE[backbone][2],zorder=3)
+        ax.scatter(x,y,s=sizes,color=palette[backbone],alpha=1.0,edgecolor='white',linewidth=.5,label=BACKBONE_STYLE[backbone][2],zorder=3)
     lim=(.18,1.04);ax.plot(lim,lim,ls='--',lw=.9,color='#333');ax.set_xlim(lim);ax.set_ylim(lim)
-    ax.set_xlabel(r'Group bound $\Delta(\mathcal{G})$');ax.set_ylabel(r'Best representative cost $\delta(\mathcal{G})$')
+    ax.set_xlabel('Worst pairwise replacement cost\n' + r'$C_{\max}(\mathcal{G})$')
+    ax.set_ylabel('Best representative cost\n' + r'$C_{\mathrm{rep}}(\mathcal{G})$')
     ax.set_title('(b)',fontweight='semibold',pad=6)
     ax.legend(frameon=False,loc='upper left',fontsize=5.8)
 
-    # (c) Pairwise envelope versus simultaneous deployment distortion.
+    # (c) Maximum worst pairwise replacement cost versus joint distortion.
     rows=read_csv(ANALYSIS/'joint_analysis.csv');ax=axes[2]
     for backbone in ORDER_BACKBONE:
         selected=sorted([row for row in rows if row['backbone']==backbone],key=lambda row:int(row['nominal_target']))
         x=np.asarray([float(row['Delta_max']) for row in selected])
         y=np.asarray([float(row['C_joint']) for row in selected])
         sizes=260*np.asarray([float(row['Pure_drop']) for row in selected])+18
-        ax.plot(x,y,color=palette[backbone],lw=1.0,alpha=.65)
-        ax.scatter(x,y,s=sizes,color=palette[backbone],edgecolor='white',linewidth=.6,label=BACKBONE_STYLE[backbone][2],zorder=3)
+        ax.plot(x,y,color=palette[backbone],lw=1.0,alpha=1.0)
+        ax.scatter(x,y,s=sizes,color=palette[backbone],alpha=1.0,edgecolor='white',linewidth=.6,label=BACKBONE_STYLE[backbone][2],zorder=3)
         for row,xx,yy in zip(selected,x,y):
             ax.annotate(f"{row['nominal_target']}%",(xx,yy),xytext=(3,2),textcoords='offset points',fontsize=6.2)
-    ax.set_xlabel(r'Max group bound $\Delta_{\max}$');ax.set_ylabel(r'Joint distortion $C_{\mathrm{joint}}$')
+    ax.set_xlabel(r'$\max_k C_{\max}(\mathcal{G}_k)$');ax.set_ylabel(r'Joint distortion $C_{\mathrm{joint}}$')
     ax.set_title('(c)',fontweight='semibold',pad=6)
     ax.legend(frameon=False,loc='upper left',fontsize=5.8)
 

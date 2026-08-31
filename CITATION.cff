@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this research artifact, please cite the accompanying paper."
-title: "Replacement-Guided Cross-Layer Sharing for Model Compression"
+title: "Cross-Layer Replacement Sharing for Model Compression"
 type: software
 version: 0.1.0
 date-released: 2026-08-25
@@ -19,7 +19,7 @@ keywords:
   - reproducible research
 preferred-citation:
   type: conference-paper
-  title: "Replacement-Guided Cross-Layer Sharing for Model Compression"
+  title: "Cross-Layer Replacement Sharing for Model Compression"
   authors:
     - family-names: Lin
       given-names: Yen-Han

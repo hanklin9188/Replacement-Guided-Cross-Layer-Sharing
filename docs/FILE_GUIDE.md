@@ -6,6 +6,9 @@
 | `paper/references.bib` | Complete bibliography for every cited key. |
 | `paper/Figure/` | Manuscript-facing framework and structural figures. |
 | `assets/figures/` | README previews and multi-format analysis figures. |
+| `paper/Figure/diag_structural_validation.tex` | Native PGFPlots/TikZ source for the structural-validation figure. |
+| `paper/Figure/structural_validation_data/` | Compact generated tables consumed by the native figure. |
+| `scripts/export_structural_validation_pgfplots.py` | Exports the released structural-analysis CSV files into paper plot inputs. |
 | `src/icassp27/` | Modular reference implementation of replacement, grouping, recovery, evaluation, and reporting. |
 | `configs/experiment.yaml` | Portable model revisions, budgets, method settings, and smoke defaults. |
 | `configs/paper_models.example.tsv` | Six-row exact paper recovery path contract. |
